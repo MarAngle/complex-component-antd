@@ -26,52 +26,49 @@ export default defineComponent({
   },
   methods: {
     renderList(menuList: TableMenuValue[], payload: tablePayload<DefaultMod>) {
-      const list: unknown[] = []
-      for (let i = 0; i < menuList.length; i++) {
-        const menuItem = menuList[i]
+      return menuList.map((menuItem) => {
         let hidden = menuItem.hidden
         if (hidden) {
           if (typeof hidden === 'function') {
             hidden = hidden(payload)
           }
           if (hidden) {
-            continue
+            return null
           }
         }
+
         let disabled = menuItem.disabled
-        if (disabled) {
-          if (typeof disabled === 'function') {
-            disabled = disabled(payload)
-          }
+        if (disabled && typeof disabled === "function") {
+          disabled = disabled(payload)
         }
-        let classList = ['complex-table-menu-item']
+
+        let classList = ["complex-table-menu-item"]
         if (menuItem.color) {
-          classList.push('complex-color-' + camelToLine(menuItem.color, '-'))
+          classList.push("complex-color-" + camelToLine(menuItem.color, "-"))
         }
         if (disabled) {
-          classList.push('complex-disabled complex-color-disabled')
+          classList.push("complex-disabled complex-color-disabled")
         }
         if (menuItem.class) {
-          if (typeof menuItem.class === 'function') {
-            classList = classList.concat(menuItem.class(payload))
-          } else {
-            classList = classList.concat(menuItem.class)
-          }
+          classList = classList.concat(typeof menuItem.class === "function" ? menuItem.class(payload) : menuItem.class)
         }
+
         const onClick = () => {
           config.parseMenuConfirm(menuItem.confirm, () => {
-            this.$emit('menu', menuItem.prop, payload)
+            this.$emit("menu", menuItem.prop, payload);
           })
         }
-        list.push(h('span', {
-          class: classList.join(' '),
-          onClick: menuItem.debounce ? debounce(onClick, menuItem.debounce, true) : onClick,
-          ...menuItem.option
-        }, {
-          default: () => menuItem.name
-        }))
-      }
-      return list
+
+        return h(
+          "span",
+          {
+            class: classList.join(" "),
+            onClick: menuItem.debounce ? debounce(onClick, menuItem.debounce, true) : onClick,
+            ...menuItem.option,
+          },
+          { default: () => menuItem.name }
+        )
+      })
     },
   },
   /**
@@ -83,9 +80,7 @@ export default defineComponent({
     return h('span', {
       class: 'complex-table-menu'
     }, {
-      default: () => {
-        return this.renderList(this.list, this.payload)
-      }
+      default: () => this.renderList(this.list, this.payload)
     })
   }
 })

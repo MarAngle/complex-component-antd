@@ -13,7 +13,7 @@ export const bindButtonClick = function(prop: string, option: ButtonEdit['$optio
   if (!option.upload) {
     return function() {
       (payload as AutoItemPayloadType<'edit'>).parent.$emit('menu', prop, payload)
-      if(option.click) {
+      if (option.click) {
         return option.click(payload)
       }
     }
@@ -32,9 +32,8 @@ export default defineComponent({
   },
   /**
    * 主要模板
-
    * @returns {VNode}
-  */
+   */
   render() {
     const targetRender = config.component.parseData(this.payload.target.$renders, 'target')
     if (targetRender) {

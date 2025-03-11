@@ -52,10 +52,10 @@ export interface QuickListProps {
 export default defineComponent({
   name: 'QuickList',
   emits: {
-    search: (prop: string, _payload: AutoItemPayloadType<'edit'>)  => {
+    search: (prop: string, _payload: AutoItemPayloadType<'edit'>) => {
       return !!prop
     },
-    table: (prop: string, _payload: tablePayload)  => {
+    table: (prop: string, _payload: tablePayload) => {
       return !!prop
     }
   },
@@ -79,9 +79,7 @@ export default defineComponent({
     editThrottle: {
       type: Object as PropType<QuickListProps['editThrottle']>,
       required: false,
-      default: () => {
-        return config.list.editThrottle
-      }
+      default: () => config.list.editThrottle
     },
     render: {
       type: Object as PropType<QuickListProps['render']>,
@@ -133,7 +131,7 @@ export default defineComponent({
   },
   methods: {
     renderSpin() {
-      if (this.currentComponents.indexOf('spin') > -1) {
+      if (this.currentComponents.includes('spin')) {
         return h(AutoSpin, { spinning: this.operate === 'ing' })
       } else {
         return null
@@ -148,7 +146,7 @@ export default defineComponent({
       }
     },
     renderSearch() {
-      if (this.currentComponents.indexOf('search') > -1 && this.listData.$module.search) {
+      if (this.currentComponents.includes('search') && this.listData.$module.search) {
         return this.$renderSearch({
           ref: 'search',
           search: this.listData.$module.search!,
@@ -217,13 +215,11 @@ export default defineComponent({
       }
     },
     renderTable() {
-      if (this.currentComponents.indexOf('table') > -1) {
+      if (this.currentComponents.includes('table')) {
         return this.$renderTable({
           ref: 'table',
           listData: this.listData,
-          onMenu: (prop: string, payload: tablePayload) => {
-            this.onTableMenu(prop, payload)
-          },
+          onMenu: this.onTableMenu,
           ...this.currentComponentsProps.table
         })
       } else {
@@ -250,9 +246,7 @@ export default defineComponent({
     renderList() {
       const content = [this.renderSpin(), this.renderSearch(), this.renderTop(), this.renderTable()]
       if (content.some(item => item != null)) {
-        return h('div', { class: 'complex-quick-list', style: { position: 'relative' } }, {
-          default: () => content
-        })
+        return h('div', { class: 'complex-quick-list', style: { position: 'relative' } }, content)
       }
       return null
     },
@@ -265,7 +259,7 @@ export default defineComponent({
       }
     },
     renderInfo() {
-      if (this.currentComponents.indexOf('info') > -1) {
+      if (this.currentComponents.includes('info')) {
         return h(QuickFloatModal, {
           ref: 'info-modal',
           float: this.currentComponentsProps.infoModal?.float,
@@ -298,7 +292,7 @@ export default defineComponent({
       }
     },
     renderEdit() {
-      if (this.currentComponents.indexOf('edit') > -1) {
+      if (this.currentComponents.includes('edit')) {
         return h(QuickFloatModal, {
           ref: 'edit-modal',
           float: this.currentComponentsProps.editModal?.float,
@@ -363,16 +357,16 @@ export default defineComponent({
     },
     showInfo(record: Record<PropertyKey, any>, type = 'info') {
       let name = '详情'
-      if (this.currentComponentsProps.infoModal && this.currentComponentsProps.infoModal.formatName) {
+      if (this.currentComponentsProps.infoModal?.formatName) {
         name = this.currentComponentsProps.infoModal.formatName(name, type)
       }
       (this.$refs['info-modal'] as InstanceType<typeof QuickFloatModal>).show([type, record], name)
     },
     openEdit(record?: Record<PropertyKey, any>, build?: boolean) {
       const isBuild = !record || build
-      let type = isBuild ? 'build' : 'change'
+      const type = isBuild ? 'build' : 'change'
       let name = isBuild ? '新增' : '编辑'
-      if (this.currentComponentsProps.editModal && this.currentComponentsProps.editModal.formatName) {
+      if (this.currentComponentsProps.editModal?.formatName) {
         name = this.currentComponentsProps.editModal.formatName(name, type)
       }
       if (!isBuild) {
@@ -422,11 +416,6 @@ export default defineComponent({
       return promise
     },
   },
-  /**
-   * 主要模板
-
-   * @returns {VNode}
-   */
   render() {
     return [this.renderList(), this.renderEdit(), this.renderInfo()]
   }

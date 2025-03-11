@@ -32,16 +32,12 @@ export default defineComponent({
     show: {
       type: Boolean,
       required: false,
-      default: () => {
-        return config.choice.show
-      }
+      default: () => config.choice.show
     },
     menu: {
       type: Boolean,
       required: false,
-      default: () => {
-        return config.choice.menu
-      }
+      default: () => config.choice.menu
     },
     formatInfo: {
       type: Function as PropType<(payload: { choice: ChoiceData, size: number, menu: boolean }) => string>,
@@ -50,9 +46,7 @@ export default defineComponent({
     emptyContent: {
       type: String,
       required: false,
-      default: () => {
-        return config.choice.emptyContent
-      }
+      default: () => config.choice.emptyContent
     },
   },
   computed: {

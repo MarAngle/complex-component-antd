@@ -30,11 +30,7 @@ export default defineComponent({
     const onResize = function(entry: ResizeObserverEntry) {
       if (contentRef.value) {
         const contentHeight = entry.borderBoxSize[0].blockSize
-        if (contentHeight <= props.height) {
-          needCollapse.value = false
-        } else {
-          needCollapse.value = true
-        }
+        needCollapse.value = contentHeight > props.height
       }
     }
     const resizeObserver = new LocalResizeObserver(onResize)

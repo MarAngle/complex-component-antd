@@ -165,11 +165,6 @@ export default defineComponent({
       }
     }
   },
-  /**
-   * 主要模板
-
-   * @returns {VNode}
-   */
   render() {
     if (config.parseCollapse(this.collapse, this.target.$collapse)) {
       const mainRender = config.component.parseData(this.target.$renders, 'main')

@@ -16,8 +16,26 @@ export type ComplexComponentAntdOptions = {
   pluginLayout?: PluginLayout
 }
 
+const defaultParseRule = function(ruleValue: ruleOption, form: Record<PropertyKey, any>) {
+  const currentRuleValue = { ...ruleValue } as any
+  if (currentRuleValue.validator) {
+    currentRuleValue.validator = function(rule: any, value: any, callback: any) {
+      const res = ruleValue.validator!(value, form, rule, callback)
+      if (typeof res === 'boolean') {
+        return res ? Promise.resolve() : Promise.reject()
+      } else {
+        return res
+      }
+    }
+  }
+  return currentRuleValue
+}
+
 const plugin = {
   install: function(_app: App, options: ComplexComponentAntdOptions = {}) {
+    // dayjs扩展插件
+    dayjs.extend(customParseFormat)
+
     if (options.reactive !== false) {
       Data.$format = function(data, formatConfig) {
         if (formatConfig && formatConfig.recommend) {
@@ -46,21 +64,6 @@ const plugin = {
         return Promise.reject({ status: 'fail', code: 'no ref' })
       }
     }
-  
-    const defaultParseRule = function(ruleValue: ruleOption, form: Record<PropertyKey, any>) {
-      const currentRuleValue = { ...ruleValue } as any
-      if (currentRuleValue.validator) {
-        currentRuleValue.validator = function(rule: any, value: any, callback: any) {
-          const res = ruleValue.validator!(value, form, rule, callback)
-          if (typeof res === 'boolean') {
-            return res ? Promise.resolve() : Promise.reject()
-          } else {
-            return res
-          }
-        }
-      }
-      return currentRuleValue
-    }
 
     DefaultEdit.$parseRule = defaultParseRule
 
@@ -79,8 +82,6 @@ const plugin = {
       const targetTime = (target as Dayjs).valueOf()
       return otherTime - targetTime
     }
-  
-    dayjs.extend(customParseFormat)
   
     SimpleDateEdit.$parse = function(value, format) {
       return value != undefined ? dayjs(value, format) : value

@@ -6,12 +6,8 @@ import config from "../../config"
 export default defineComponent({
   name: 'PaginationView',
   emits: {
-    page: (_page: number, _size: number) => {
-      return true
-    },
-    size: (_page: number, _size: number) => {
-      return true
-    },
+    page: (_page: number, _size: number) => true,
+    size: (_page: number, _size: number) => true,
   },
   props: {
     pagination: {
@@ -46,11 +42,7 @@ export default defineComponent({
   methods: {
     renderSlot() {
       const slot = this.$slots.default || config.component.parseData(this.pagination.$renders, 'slot')
-      if (slot) {
-        return slot(this.payload)
-      } else {
-        return null
-      }
+      return slot ? slot(this.payload) : null
     },
     renderInfo() {
       if (!this.simple) {
@@ -104,9 +96,8 @@ export default defineComponent({
    * @returns {VNode}
    */
   render() {
-    const render = h('div', { class: 'complex-pagination' }, {
+    return h('div', { class: 'complex-pagination' }, {
       default: () => [this.renderSlot(), this.renderInfo(), this.renderPagination()]
     })
-    return render
   }
 })

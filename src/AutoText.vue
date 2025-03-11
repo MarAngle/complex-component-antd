@@ -71,11 +71,7 @@ export default defineComponent({
       if (mainRef.value && sizeRef.value) {
         const mainWidth = mainRef.value.getBoundingClientRect().width
         const sizeWidth = sizeRef.value.getBoundingClientRect().width
-        if (mainWidth < sizeWidth) {
-          isEllipsis.value = true
-        } else {
-          isEllipsis.value = false
-        }
+        isEllipsis.value = mainWidth < sizeWidth
       }
     }
     const resizeObserver = new LocalResizeObserver(onResize, {
