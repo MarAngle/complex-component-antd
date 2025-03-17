@@ -87,6 +87,7 @@
   text-align: center;
 }
 .complex-simple-table-content .complex-simple-table-content-column .complex-simple-table-content-header{
+  line-height: 22px;
   white-space: nowrap; /* 不换行 */
   overflow: hidden; /* 隐藏超出部分 */
   text-overflow: ellipsis; /* 显示省略号 */
@@ -116,8 +117,8 @@
   padding: 16px 16px;
   border-bottom: 1px solid #f0f0f0;
 }
-.complex-simple-table-content .complex-simple-table-content-column .complex-simple-table-content-row:deep(p){
-  height: 22px;
+.complex-simple-table-content .complex-simple-table-content-column .complex-simple-table-content-row *{
+  line-height: 22px;
   white-space: nowrap; /* 不换行 */
   overflow: hidden; /* 隐藏超出部分 */
   text-overflow: ellipsis; /* 显示省略号 */

@@ -12,6 +12,9 @@
 ### Doing
 - 简化SimpleTable，可自定义组件，通过此组件实现ListEdit
 
+### 4.8.7
+- 修正SimpleTable的行高与Antd的Table保持一致
+
 ### 4.8.6
 - 基于AI优化代码
 
