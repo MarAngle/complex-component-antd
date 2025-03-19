@@ -94,6 +94,7 @@ const config = {
     }
   },
   style: {
+    element: undefined as undefined | HTMLStyleElement,
     color: {
       primary: '#1677ff',
       success: '#52c41a',
@@ -101,7 +102,7 @@ const config = {
       realLink: 'rgba(24,144,255,1)',
       warning: '#faad14',
       danger: '#ff4d4f',
-      disabled: 'rgba(0, 0, 0, 0.25)',
+      disabled: 'rgba(0,0,0,0.25)',
       headText: 'rgba(0,0,0,0.85)',
       text: 'rgba(0,0,0,0.65)',
       secondaryText: 'rgba(0,0,0,0.45)',
@@ -112,30 +113,37 @@ const config = {
     } as Record<string, string | number>
   },
   initStyle() {
-    const style = document.createElement('style')
-    let rootInnerHTML = `:root{`
-    let classInnerHTML = ``
+    let rootInnerHTML = ":root{"
+    let styleInnerHTML = ""
     for (const name in config.style.color) {
-      const colorName = camelToLine(name, '-')
-      const colorProp = 'complex-color-' + colorName
-      const colorValue = config.style.color[name]
-      const rgba = parseColor(colorValue)
-      rootInnerHTML += `\n--${colorProp}-rgba: ${rgba?.r}, ${rgba?.g}, ${rgba?.b}, ${rgba?.a};`
-      rootInnerHTML += `\n--${colorProp}: rgba(var(--${colorProp}-rgba));`
-      classInnerHTML += `\n.${colorProp}{ color: var(--${colorProp}); }`
-      classInnerHTML += `\n.complex-bg-color-${colorName}{ background-color: var(--${colorProp}); }`
+      const styleName = camelToLine(name, '-')
+      const styleProp = 'complex-color-' + styleName
+      const styleVarProp = '--' + styleProp
+      const styleValue = config.style.color[name]
+      const rgba = parseColor(styleValue)
+      const rgbStr = `${rgba?.r},${rgba?.g},${rgba?.b}`
+      rootInnerHTML += `\n${styleVarProp}-rgb:${rgbStr};`
+      rootInnerHTML += `\n${styleVarProp}-rgba:${rgbStr},${rgba?.a};`
+      rootInnerHTML += `\n${styleVarProp}:${styleValue};`
+      styleInnerHTML += `\n.${styleProp}{color:var(${styleVarProp});}`
+      styleInnerHTML += `\n.complex-bg-color-${styleName}{background-color:var(${styleVarProp});}`
     }
     config.style.data.animateTime = componentConfig.animateTime
     for (const name in config.style.data) {
-      const styleProp = 'complex-style-' + camelToLine(name, '-')
+      const styleVarProp = '--complex-style-' + camelToLine(name, '-')
       const styleValue = config.style.data[name]
-      rootInnerHTML += `\n--${styleProp}: ${styleValue};`
+      rootInnerHTML += `\n${styleVarProp}:${styleValue};`
     }
-    rootInnerHTML += `\n}\n`
+    rootInnerHTML += "\n}"
     // 设置样式规则
-    style.innerHTML =rootInnerHTML + classInnerHTML
-    // 将样式元素节点添加到页面头部
-    document.head.appendChild(style)
+    if (!this.style.element) {
+      this.style.element = document.createElement('style')
+      this.style.element.innerHTML =rootInnerHTML + styleInnerHTML
+      // 将样式元素节点添加到页面头部
+      document.head.appendChild(this.style.element)
+    } else {
+      this.style.element.innerHTML =rootInnerHTML + styleInnerHTML
+    }
   },
   parseGrid(gridValue: GridValue) {
     return gridValue
