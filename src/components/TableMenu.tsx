@@ -3,10 +3,10 @@ import { camelToLine, debounce } from "complex-utils"
 import { MenuValue } from "complex-data/type"
 import DefaultMod from "complex-data/src/dictionary/DefaultMod"
 import { tablePayload } from "../TableView"
-import config, { colorKeys } from "../../config"
+import config from "../../config"
 
 export interface TableMenuValue extends MenuValue<never, [tablePayload<DefaultMod>]> {
-  color?: | colorKeys
+  color?: string
   class?: string[] | ((payload: tablePayload<DefaultMod>) => string[])
   option?: Record<string, unknown>
   children?: TableMenuValue[]

@@ -12,6 +12,10 @@
 ### Doing
 - 简化SimpleTable，可自定义组件，通过此组件实现ListEdit
 
+### 4.8.8
+- 重大变化：优化样式自动构建整体逻辑，为全局统一样式实现基础
+- 添加SelectText组件，展示SelectValue
+
 ### 4.8.7
 - 修正SimpleTable的行高与Antd的Table保持一致
 

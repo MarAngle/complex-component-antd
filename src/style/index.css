@@ -1,3 +1,9 @@
+.complex-auto-index{
+  color: var(--complex-color-primary);
+}
+.complex-high-text .complex-high-text-is-high{
+  color: var(--complex-color-primary);
+}
 /* Import Style */
 .complex-import .complex-import-file{
   display: none !important;

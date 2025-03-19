@@ -1,7 +1,7 @@
 import { h } from "vue"
 import { Button } from "ant-design-vue"
 import { ButtonType } from "ant-design-vue/es/button"
-import { getType, camelToLine, downloadFile } from "complex-utils"
+import { getType, camelToLine, downloadFile, parseColor } from "complex-utils"
 import { notice, PluginLayout } from "complex-plugin"
 import { ChoiceData, PaginationData, AttrsValue, DictionaryData, DictionaryValue, DefaultInfo } from "complex-data"
 import DefaultList from 'complex-data/src/dictionary/DefaultList'
@@ -18,9 +18,9 @@ import { tablePayload } from "./src/TableView"
 import MultipleImport from "./src/MultipleImport"
 import SingleImport from "./src/SingleImport"
 import MenuView from "./src/MenuView"
+import ImageViewer from "./src/ImageViewer"
 import { QuickListProps } from "./quick/QuickList"
 import $icon from "./icon"
-import ImageViewer from "./src/ImageViewer"
 
 export class LayoutLifeData {
   life: string
@@ -42,8 +42,6 @@ export class LayoutLifeData {
     this.life = ''
   }
 }
-
-export type colorKeys = keyof typeof config.style.color
 
 const config = {
   component: componentConfig,
@@ -95,19 +93,47 @@ const config = {
       })
     }
   },
+  style: {
+    color: {
+      primary: '#1677ff',
+      success: '#52c41a',
+      link: '#1677ff',
+      realLink: 'rgba(24,144,255,1)',
+      warning: '#faad14',
+      danger: '#ff4d4f',
+      disabled: 'rgba(0, 0, 0, 0.25)',
+      headText: 'rgba(0,0,0,0.85)',
+      text: 'rgba(0,0,0,0.65)',
+      secondaryText: 'rgba(0,0,0,0.45)',
+      border: 'rgba(217,217,217,1)',
+    } as Record<string, string>,
+    data: {
+      boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+    } as Record<string, string | number>
+  },
   initStyle() {
     const style = document.createElement('style')
-    let innerHTML = ''
+    let rootInnerHTML = `:root{`
+    let classInnerHTML = ``
     for (const name in config.style.color) {
-      const styleName = 'complex-color-' + camelToLine(name, '-')
-      innerHTML += `\n.${styleName}{ color: ${config.style.color[name as colorKeys]}; }`
+      const colorName = camelToLine(name, '-')
+      const colorProp = 'complex-color-' + colorName
+      const colorValue = config.style.color[name]
+      const rgba = parseColor(colorValue)
+      rootInnerHTML += `\n--${colorProp}-rgba: ${rgba?.r}, ${rgba?.g}, ${rgba?.b}, ${rgba?.a};`
+      rootInnerHTML += `\n--${colorProp}: rgba(var(--${colorProp}-rgba));`
+      classInnerHTML += `\n.${colorProp}{ color: var(--${colorProp}); }`
+      classInnerHTML += `\n.complex-bg-color-${colorName}{ background-color: var(--${colorProp}); }`
     }
-    // AutoIndex样式覆盖
-    innerHTML += `\n.complex-auto-index{ color: ${config.style.color.primary}; }`
-    // HighText样式覆盖
-    innerHTML += `\n.complex-high-text .complex-high-text-is-high{ color: ${config.style.color.primary}; }`
+    config.style.data.animateTime = componentConfig.animateTime
+    for (const name in config.style.data) {
+      const styleProp = 'complex-style-' + camelToLine(name, '-')
+      const styleValue = config.style.data[name]
+      rootInnerHTML += `\n--${styleProp}: ${styleValue};`
+    }
+    rootInnerHTML += `\n}\n`
     // 设置样式规则
-    style.innerHTML = innerHTML
+    style.innerHTML =rootInnerHTML + classInnerHTML
     // 将样式元素节点添加到页面头部
     document.head.appendChild(style)
   },
@@ -119,18 +145,6 @@ const config = {
       return value as string | number | undefined
     } else {
       return (value as Record<PropertyKey, any> | any[]).toString()
-    }
-  },
-  style: {
-    color: {
-      primary: '#1677ff',
-      link: '#1677ff',
-      success: '#52c41a',
-      warning: '#faad14',
-      danger: '#ff4d4f',
-      disabled: 'rgba(0, 0, 0, 0.25)',
-      text: 'rgba(0, 0, 0, 0.88)',
-      secondaryText: 'rgba(0, 0, 0, 0.45)'
     }
   },
   search: {
