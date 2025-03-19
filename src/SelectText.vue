@@ -1,5 +1,5 @@
 <template>
-  <span class="complex-select-text" :style="style" >{{ value ? value[prop] : missValue }}</span>
+  <span class="complex-select-text" :style="style" >{{ !format ? value ? value.label : missValue : format(value) }}</span>
 </template>
 
 <script lang="ts">
@@ -24,12 +24,16 @@ export default defineComponent({
       required: false,
       default: false
     },
-    prop: {
-      type: [String, Number, Symbol] as PropType<PropertyKey>,
-      required: false,
-      default: 'label'
+    format: {
+      type: Function as PropType<(value?: SelectValueType) => string>,
+      required: false
     },
     missValue: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    emptyValue: {
       type: String,
       required: false,
       default: ''
@@ -49,6 +53,13 @@ export default defineComponent({
           }
         }
       }
+    }
+  },
+  methods: {
+    currentText() {
+      const value = this.value
+      const format = this.format
+      return !format ? value ? value.label : this.missValue : format(value) ?? this.emptyValue
     }
   }
 })
