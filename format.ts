@@ -182,7 +182,7 @@ const dict = {
       const itemAttrs = new AttrsValue({
         props: {
           mode: edit.multiple ? 'multiple' : 'default',
-          options: edit.$select.getList(),
+          options: !edit.$filter ? edit.$select.getList() : edit.$filter(edit.$select, payload.list),
           open: (edit.$option as any).open,
           showSearch: !!search,
           searchValue: search?.value,
