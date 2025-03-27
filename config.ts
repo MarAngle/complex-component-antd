@@ -291,10 +291,10 @@ const config = {
   },
   list: {
     components: ['spin', 'search', 'table', 'edit'] as ('spin' | 'search' | 'table' | 'info' | 'edit' | 'child')[],
-    editThrottle: {
+    editDebounce: {
       value: 200,
       start: true
-    } as QuickListProps['editThrottle']
+    } as QuickListProps['editDebounce']
   },
   import: {
     renderMenu(target: (InstanceType<typeof MultipleImport> | InstanceType<typeof SingleImport>)) {

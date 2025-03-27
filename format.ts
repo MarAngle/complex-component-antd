@@ -165,8 +165,8 @@ const dict = {
         if (isLoading && search.operate) {
           isLoading = false
         }
-        on.search = function(value: string) {
-          edit.$searchData(value)
+        on.search = function(value?: string) {
+          edit.loadData(true, value)
         }
         // 关闭会自动触发search value = ''事件，因此reload=false不进行实现
         // if (search.reload) {

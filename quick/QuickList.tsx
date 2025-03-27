@@ -43,7 +43,7 @@ export interface QuickListProps {
   simpleTable?: boolean
   components?: ('spin' | 'search' | 'table' | 'info' | 'edit')[]
   componentsProps?: componentsProps
-  editThrottle?: triggerMethodOption['throttle']
+  editDebounce?: triggerMethodOption['debounce']
   render?: renderType
   reset?: resetOptionType
   destroy?: resetOptionType
@@ -76,10 +76,10 @@ export default defineComponent({
       type: Object as PropType<QuickListProps['componentsProps']>,
       required: false
     },
-    editThrottle: {
-      type: Object as PropType<QuickListProps['editThrottle']>,
+    editDebounce: {
+      type: Object as PropType<QuickListProps['editDebounce']>,
       required: false,
-      default: () => config.list.editThrottle
+      default: () => config.list.editDebounce
     },
     render: {
       type: Object as PropType<QuickListProps['render']>,
@@ -235,7 +235,7 @@ export default defineComponent({
           if (act === 'ok') {
             this.listData.triggerMethod('deleteData', [payload!.targetData], {
               strict: true,
-              throttle: this.editThrottle
+              debounce: this.editDebounce
             })
           }
         })
@@ -323,7 +323,7 @@ export default defineComponent({
           if (act === 'ok') {
             this.listData.triggerMethod('multipleDeleteData', [this.currentChoice], {
               strict: true,
-              throttle: this.editThrottle
+              debounce: this.editDebounce
             }).then(() => {
               this.listData.resetChoice()
             })
@@ -400,17 +400,17 @@ export default defineComponent({
       if (res.type === 'build') {
         promise = this.listData.triggerMethod('buildData', [res.targetData, res.type], {
           strict: true,
-          throttle: this.editThrottle
+          debounce: this.editDebounce
         })
       } else if (res.type === 'change') {
         promise = this.listData.triggerMethod('changeData', [res.targetData, res.originData, res.type], {
           strict: true,
-          throttle: this.editThrottle
+          debounce: this.editDebounce
         })
       } else {
         promise = this.listData.triggerMethod('editData', [res.targetData, res.originData, res.type], {
           strict: true,
-          throttle: this.editThrottle
+          debounce: this.editDebounce
         })
       }
       return promise

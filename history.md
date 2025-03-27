@@ -12,6 +12,10 @@
 ### Doing
 - 简化SimpleTable，可自定义组件，通过此组件实现ListEdit
 
+### 4.8.12
+- feat:升级依赖，适配新版SelectEdit
+- feat:QuickList的editThrottle=>editDebounce
+
 ### 4.8.11
 - 适配DefaultSelectEdit的filter函数
 
