@@ -52,7 +52,7 @@ export default defineComponent({
         return h('div', {
           class: 'complex-image-viewer-empty'
         }, [
-          !this.emptyRender ? icon.local('emptyPic', { size: this.currentSize, color: config.style.color.disabled }) : this.emptyRender({ size: this.currentSize, color: config.style.color.disabled })
+          !this.emptyRender ? icon.local('emptyImage', { size: this.currentSize, color: config.style.color.disabled }) : this.emptyRender({ size: this.currentSize, color: config.style.color.disabled })
         ])
       }
     },

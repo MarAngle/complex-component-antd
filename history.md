@@ -15,6 +15,8 @@
 ### 4.8.12
 - feat:升级依赖，适配新版SelectEdit
 - feat:QuickList的editThrottle=>editDebounce
+- feat:EmptyPic=>EmptyImage
+- feat:添加ErrorImage
 
 ### 4.8.11
 - 适配DefaultSelectEdit的filter函数

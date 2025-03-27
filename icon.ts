@@ -1,7 +1,8 @@
 import { Component, VNode, h } from 'vue'
 import { SearchOutlined, SettingOutlined, PlusOutlined, DeleteOutlined, ContainerOutlined, EditOutlined, ReloadOutlined, SyncOutlined, CloseOutlined, StopOutlined, DownloadOutlined, UploadOutlined, LinkOutlined, DownOutlined, UpOutlined } from '@ant-design/icons-vue'
 import { MenuValue } from 'complex-data/type'
-import EmptyPic from "./src/icons/EmptyPic.vue"
+import EmptyImage from "./src/icons/EmptyImage.vue"
+import ErrorImage from "./src/icons/ErrorImage.vue"
 
 export interface localIconProps {
   size?: number
@@ -27,7 +28,8 @@ export const iconDict: Record<string, (props?: Record<PropertyKey, any>) => VNod
 }
 
 export const localIconDict: Record<string, Component> = {
-  emptyPic: EmptyPic
+  emptyImage: EmptyImage,
+  errorImage: ErrorImage
 }
 
 const icon = {
