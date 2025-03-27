@@ -28,6 +28,15 @@ export default defineComponent({
     emptyRender: {
       type: Function as PropType<renderType>,
       required: false
+    },
+    errorRender: {
+      type: Function as PropType<renderType>,
+      required: false
+    }
+  },
+  data() {
+    return {
+      isError: false
     }
   },
   computed: {
@@ -38,21 +47,38 @@ export default defineComponent({
       return this.width >= this.currentHeight ? this.width : this.currentHeight
     }
   },
+  watch: {
+    // 监听src变化，重置加载状态
+    src(val) {
+      if (val) {
+        this.isError = false
+      }
+    }
+  },
   methods: {
     renderImage() {
-      if (this.src) {
+      if (this.src && !this.isError) {
         return h('img', {
           class: this.modal ? 'complex-image-viewer-content complex-image-viewer-content-has-modal' : 'complex-image-viewer-content',
           src: this.src,
+          onError: () => {
+            this.isError = true
+          },
           onClick: this.modal ? () => {
             (this.$refs.modal as InstanceType<typeof ModalView>).show()
           } : undefined
         })
+      } else if (this.isError) {
+        return h('div', {
+          class: 'complex-image-viewer-error'
+        }, [
+          !this.errorRender ? icon.local('errorImage', { size: this.currentSize }) : this.errorRender({ size: this.currentSize })
+        ])
       } else {
         return h('div', {
           class: 'complex-image-viewer-empty'
         }, [
-          !this.emptyRender ? icon.local('emptyImage', { size: this.currentSize, color: config.style.color.disabled }) : this.emptyRender({ size: this.currentSize, color: config.style.color.disabled })
+          !this.emptyRender ? icon.local('emptyImage', { size: this.currentSize }) : this.emptyRender({ size: this.currentSize })
         ])
       }
     },

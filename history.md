@@ -17,6 +17,7 @@
 - feat:QuickList的editThrottle=>editDebounce
 - feat:EmptyPic=>EmptyImage
 - feat:添加ErrorImage
+- feat:ImageViewer添加图片加载失败判断逻辑
 
 ### 4.8.11
 - 适配DefaultSelectEdit的filter函数
