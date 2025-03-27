@@ -12,7 +12,7 @@
 ### Doing
 - 简化SimpleTable，可自定义组件，通过此组件实现ListEdit
 
-### 4.8.12
+### 4.8.12/13
 - feat:升级依赖，适配新版SelectEdit
 - feat:QuickList的editThrottle=>editDebounce
 - feat:EmptyPic=>EmptyImage
