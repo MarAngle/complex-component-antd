@@ -1,3 +1,4 @@
+import AutoSpin from "./src/AutoSpin.vue"
 import AutoText from "./src/AutoText.vue"
 import SelectText from "./src/SelectText.vue"
 import MenuView from "./src/MenuView"
@@ -18,6 +19,7 @@ import QuickEdit from "./quick/QuickEdit"
 import QuickFloat from "./quick/QuickFloat"
 import plugin from "./plugin"
 
+export const ComplexAutoSpin = AutoSpin
 export const ComplexAutoText = AutoText
 export const ComplexSelectText = SelectText
 export const ComplexMenuView = MenuView
