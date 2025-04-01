@@ -42,9 +42,9 @@ export default defineComponent({
   computed: {
     style() {
       if (this.value) {
-        if (this.value.color && this.color) {
+        if (this.value.color) {
           return {
-            color: this.value.color
+            color: !this.value.$color ? this.value.color : config.style.color[this.value.$color]
           }
         }
         if (this.disabled && this.value.disabled) {
