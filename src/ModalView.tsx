@@ -3,7 +3,7 @@ import { Modal, ModalProps } from "ant-design-vue"
 import { deepCloneData, updateData } from "complex-utils"
 import { MenuValue } from "complex-data/type"
 import ButtonView from "./ButtonView"
-import config from "../config"
+import { antdConfig }from "../index"
 
 export type modalLayoutOption = {
   type: 'auto' | 'fixed'
@@ -57,7 +57,7 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: () => {
-        return config.modal.destroyOnClose
+        return antdConfig.modal.destroyOnClose
       }
     },
     layout: {
@@ -96,7 +96,7 @@ export default defineComponent({
       return this.localTitle || this.title
     },
     currentLayout() {
-      return updateData(deepCloneData(config.modal.layout), this.layout)
+      return updateData(deepCloneData(antdConfig.modal.layout), this.layout)
     },
     menuList() {
       let menuList: MenuValue[]
@@ -116,7 +116,7 @@ export default defineComponent({
       }
       if (!this.menu) {
         menuList = [
-          config.modal.getMenu('close', {
+          antdConfig.modal.getMenu('close', {
             click: close
           })
         ]
@@ -125,17 +125,17 @@ export default defineComponent({
           if (typeof menu !== 'object') {
             const menuOption = this.menuOption ? this.menuOption[menu] : undefined
             if (menu === 'close' || menu === 'cancel') {
-              return config.modal.getMenu(menu, {
+              return antdConfig.modal.getMenu(menu, {
                 ...menuOption,
                 click: close
               })
             } else if (menu === 'submit') {
-              return config.modal.getMenu(menu, {
+              return antdConfig.modal.getMenu(menu, {
                 ...menuOption,
                 click: submit
               })
             } else {
-              return config.modal.getMenu(menu, {
+              return antdConfig.modal.getMenu(menu, {
                 ...menuOption,
               })
             }
@@ -148,7 +148,7 @@ export default defineComponent({
     },
     currentWidth() {
       if (!this.width) {
-        return config.modal.width
+        return antdConfig.modal.width
       } else {
         return this.width
       }
@@ -217,8 +217,8 @@ export default defineComponent({
     }
   },
   render() {
-    const top = config.component.data.formatPixel(this.currentLayout.top)
-    const padding = this.currentLayout.padding.map(num => config.component.data.formatPixel(num)).join(' ')
+    const top = antdConfig.dataConfig.formatPixel(this.currentLayout.top)
+    const padding = this.currentLayout.padding.map(num => antdConfig.dataConfig.formatPixel(num)).join(' ')
     interface ModalPropsWithClass extends ModalProps {
       class: string
     }

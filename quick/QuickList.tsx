@@ -13,7 +13,7 @@ import InfoArea, { InfoAreaOption, InfoAreaProps } from "./../src/InfoArea"
 // import CollapseArea, { CollapseAreaProps } from "./../src/CollapseArea"
 import { AutoItemPayloadType } from "./../src/dictionary/AutoItem"
 import FloatData from "./data/FloatData"
-import config from "./../config"
+import { antdConfig } from "./../index"
 
 export interface ListModalViewProps extends ModalViewProps {
   formatName?: (name: string, payload?: unknown) => string
@@ -79,7 +79,7 @@ export default defineComponent({
     editDebounce: {
       type: Object as PropType<QuickListProps['editDebounce']>,
       required: false,
-      default: () => config.list.editDebounce
+      default: () => antdConfig.list.editDebounce
     },
     render: {
       type: Object as PropType<QuickListProps['render']>,
@@ -99,7 +99,7 @@ export default defineComponent({
       return this.listData.getStatus('operate')
     },
     currentComponents() {
-      return this.components || [...config.list.components]
+      return this.components || [...antdConfig.list.components]
     },
     currentComponentsProps() {
       return this.componentsProps || {}

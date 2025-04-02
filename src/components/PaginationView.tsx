@@ -1,7 +1,7 @@
 import { defineComponent, h, PropType } from "vue"
 import { Pagination } from "ant-design-vue"
 import { AttrsValue, PaginationData } from "complex-data"
-import config from "../../config"
+import { antdConfig } from "../../index"
 
 export default defineComponent({
   name: 'PaginationView',
@@ -36,17 +36,17 @@ export default defineComponent({
       }
     },
     currentFormatInfo() {
-      return this.formatInfo || config.pagination.formatInfo
+      return this.formatInfo || antdConfig.pagination.formatInfo
     }
   },
   methods: {
     renderSlot() {
-      const slot = this.$slots.default || config.component.parseData(this.pagination.$renders, 'slot')
+      const slot = this.$slots.default || antdConfig.componentConfig.parseData(this.pagination.$renders, 'slot')
       return slot ? slot(this.payload) : null
     },
     renderInfo() {
       if (!this.simple) {
-        const infoRender = config.component.parseData(this.pagination.$renders, 'info')
+        const infoRender = antdConfig.componentConfig.parseData(this.pagination.$renders, 'info')
         return h('span', {
           class: 'complex-pagination-info'
         }, {
@@ -57,7 +57,7 @@ export default defineComponent({
       }
     },
     renderPagination() {
-      const targetRender = config.component.parseData(this.pagination.$renders, 'target')
+      const targetRender = antdConfig.componentConfig.parseData(this.pagination.$renders, 'target')
       if (!targetRender) {
         const paginationAttrs = new AttrsValue({
           props: {
@@ -84,7 +84,7 @@ export default defineComponent({
             }
           }
         })
-        return h(Pagination, config.component.parseAttrs(paginationAttrs.merge(this.pagination.$attrs)))
+        return h(Pagination, antdConfig.componentConfig.parseAttrs(paginationAttrs.merge(this.pagination.$attrs)))
       } else {
         return targetRender(this.payload)
       }

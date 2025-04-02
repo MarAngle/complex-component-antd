@@ -3,7 +3,7 @@ import { camelToLine, debounce } from "complex-utils"
 import { MenuValue } from "complex-data/type"
 import DefaultMod from "complex-data/src/dictionary/DefaultMod"
 import { tablePayload } from "../TableView"
-import config from "../../config"
+import { antdConfig } from "../../index"
 
 export interface TableMenuValue extends MenuValue<never, [tablePayload<DefaultMod>]> {
   color?: string
@@ -54,7 +54,7 @@ export default defineComponent({
         }
 
         const onClick = () => {
-          config.parseMenuConfirm(menuItem.confirm, () => {
+          antdConfig.parseMenuConfirm(menuItem.confirm, () => {
             this.$emit("menu", menuItem.prop, payload);
           })
         }

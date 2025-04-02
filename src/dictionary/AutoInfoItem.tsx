@@ -7,7 +7,7 @@ import FormEdit from "complex-data/src/dictionary/FormEdit"
 import ButtonView from "../ButtonView"
 import { AutoItemPayloadType, AutoItemParser } from "./AutoItem"
 import InfoView, { InfoViewProps } from "../InfoView"
-import config from "../../config"
+import { antdConfig } from "../../index"
 
 export const bindButtonClick = function(prop: string, option: ButtonEdit['$option'], payload: AutoItemPayloadType<AutoItemParser>) {
   if (!option.upload) {
@@ -35,15 +35,15 @@ export default defineComponent({
    * @returns {VNode}
    */
   render() {
-    const targetRender = config.component.parseData(this.payload.target.$renders, 'target')
+    const targetRender = antdConfig.componentConfig.parseData(this.payload.target.$renders, 'target')
     if (targetRender) {
       return targetRender({
         ...this.payload
       })
     } else {
-      const targetAttrs = config.component.parseData(this.payload.target.$local, 'target') || new AttrsValue()
+      const targetAttrs = antdConfig.componentConfig.parseData(this.payload.target.$local, 'target') || new AttrsValue()
       if (!(this.payload.parent as InstanceType<typeof InfoView>).gridParse && this.payload.target.$width) {
-        targetAttrs.style.width = typeof this.payload.target.$width === 'number' ? config.component.data.formatPixel(this.payload.target.$width) : this.payload.target.$width
+        targetAttrs.style.width = typeof this.payload.target.$width === 'number' ? antdConfig.componentConfig.data.formatPixel(this.payload.target.$width) : this.payload.target.$width
       }
       if (this.payload.target instanceof ButtonEdit) {
         const option = {
@@ -67,10 +67,10 @@ export default defineComponent({
         }
         option.click = bindButtonClick(this.payload.target.$prop, this.payload.target.$option, this.payload)
         targetAttrs.props.data = option
-        return h(ButtonView, config.component.parseAttrs(targetAttrs) as { data: ButtonEditOption })
+        return h(ButtonView, antdConfig.componentConfig.parseAttrs(targetAttrs) as { data: ButtonEditOption })
       } else if (this.payload.target instanceof ButtonGroupEdit) {
         const { target } = this.payload
-        return h('div', config.component.parseAttrs(targetAttrs), [
+        return h('div', antdConfig.componentConfig.parseAttrs(targetAttrs), [
           target.$list.map((buttonOption, index) => {
             const interval = (index !== target.$list.length - 1) ? target.interval : undefined
             const option = {
@@ -98,7 +98,7 @@ export default defineComponent({
       } else if (this.payload.target instanceof ContentEdit) {
         const { target } = this.payload
         targetAttrs.pushStyle(target.$option.style)
-        return h('div', config.component.parseAttrs(targetAttrs), [target.$option.data])
+        return h('div', antdConfig.componentConfig.parseAttrs(targetAttrs), [target.$option.data])
       } else if (this.payload.target instanceof FormEdit) {
         const { target } = this.payload
         // 额外则直接解析数据
@@ -112,7 +112,7 @@ export default defineComponent({
             disabled: this.payload.disabled
           } as InfoViewProps
         }))
-        return h(InfoView, config.component.parseAttrs(targetAttrs) as unknown as InfoViewProps)
+        return h(InfoView, antdConfig.componentConfig.parseAttrs(targetAttrs) as unknown as InfoViewProps)
       } else {
         // 额外则直接解析数据
         const { target, targetData, prop } = this.payload
@@ -121,7 +121,7 @@ export default defineComponent({
         if (parent && parent.parse) {
           text = parent.parse(text, this.payload)
         }
-        return h('div', config.component.parseAttrs(targetAttrs), config.showValue(text))
+        return h('div', antdConfig.componentConfig.parseAttrs(targetAttrs), antdConfig.showValue(text))
       }
     }
   }

@@ -1,7 +1,7 @@
 import { defineComponent, h, PropType, VNode } from "vue"
 import ModalView, { ModalViewProps } from "./ModalView"
 import icon, { localIconProps } from "../icon"
-import config from "../config"
+import { antdConfig }from "../index"
 
 type renderType = (payload: localIconProps) => VNode | VNode[]
 
@@ -90,7 +90,7 @@ export default defineComponent({
           ...this.modal
         }, {
           default: ({ width }: { width: number }) => {
-            const currentWidth = config.component.data.formatPixel(width)
+            const currentWidth = antdConfig.dataConfig.formatPixel(width)
             return h('img', {
               src: this.src,
               style: {
@@ -104,8 +104,8 @@ export default defineComponent({
     }
   },
   render() {
-    const width = config.component.data.formatPixel(this.width)
-    const height = config.component.data.formatPixel(this.currentHeight)
+    const width = antdConfig.dataConfig.formatPixel(this.width)
+    const height = antdConfig.dataConfig.formatPixel(this.currentHeight)
     return h('div', {
       class: 'complex-image-viewer',
       style: {

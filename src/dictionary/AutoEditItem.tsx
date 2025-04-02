@@ -8,7 +8,7 @@ import EditView from "../EditView"
 import SingleImport from "../SingleImport"
 import MultipleImport from "../MultipleImport"
 import { parseEditAttrs } from "../../format"
-import config from "../../config"
+import { antdConfig } from "../../index"
 
 export default defineComponent({
   name: 'AutoEditItem',
@@ -31,13 +31,13 @@ export default defineComponent({
     const targetAttrs = parseEditAttrs(target, this.payload)!
     targetAttrs.pushClass('complex-edit-item')
     targetAttrs.pushClass('complex-edit-item-' + camelToLine(target.type, '-'))
-    targetAttrs.merge(config.component.parseData(target.$local, 'target'))
+    targetAttrs.merge(antdConfig.componentConfig.parseData(target.$local, 'target'))
     let item = null
     if (!(this.payload.parent as InstanceType<typeof EditView>).gridParse && target.$width) {
-      targetAttrs.style.width = typeof target.$width === 'number' ? config.component.data.formatPixel(target.$width) : target.$width
+      targetAttrs.style.width = typeof target.$width === 'number' ? antdConfig.componentConfig.data.formatPixel(target.$width) : target.$width
     }
-    const targetRender = config.component.parseData(target.$renders, 'target')
-    const option = config.component.parseAttrs(targetAttrs)
+    const targetRender = antdConfig.componentConfig.parseData(target.$renders, 'target')
+    const option = antdConfig.componentConfig.parseAttrs(targetAttrs)
     // 考虑一个默认的值，inline模式下和其他模式下的默认值，避免出现问题
     if (targetRender) {
       item = targetRender({
@@ -56,14 +56,14 @@ export default defineComponent({
       tag = Select
       const $data = target
       children = {}
-      const dropdownRender = config.component.parseData(target.$renders, 'dropdown')
-      const optionRender = config.component.parseData(target.$renders, 'option')
-      const tagRender = config.component.parseData(target.$renders, 'tag')
+      const dropdownRender = antdConfig.componentConfig.parseData(target.$renders, 'dropdown')
+      const optionRender = antdConfig.componentConfig.parseData(target.$renders, 'option')
+      const tagRender = antdConfig.componentConfig.parseData(target.$renders, 'tag')
       if (dropdownRender) {
         children.dropdownRender = dropdownRender
       } else {
-        const dropdownTopRender = config.component.parseData(target.$renders, 'dropdownTop')
-        const dropdownBottomRender = config.component.parseData(target.$renders, 'dropdownBottom')
+        const dropdownTopRender = antdConfig.componentConfig.parseData(target.$renders, 'dropdownTop')
+        const dropdownBottomRender = antdConfig.componentConfig.parseData(target.$renders, 'dropdownBottom')
         if (dropdownTopRender || $data.$pagination || dropdownBottomRender) {
           children.dropdownRender = (payload: { menuNode: VNode }) => {
             const vNodes = [payload.menuNode]
@@ -116,7 +116,7 @@ export default defineComponent({
                   e.preventDefault()
                 }
               }))
-              const dropdownPaginationBottomRender = config.component.parseData(target.$renders, 'dropdownPaginationBottom')
+              const dropdownPaginationBottomRender = antdConfig.componentConfig.parseData(target.$renders, 'dropdownPaginationBottom')
               if (dropdownPaginationBottomRender) {
                 vNodes.push(h(Divider, {
                   style: {

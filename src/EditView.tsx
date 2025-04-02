@@ -6,7 +6,7 @@ import ObserveList from "complex-data/src/dictionary/ObserveList"
 import DefaultInfo from "complex-data/src/dictionary/DefaultInfo"
 import AutoItem, { AutoItemPayloadType, AutoItemProps, AutoItemParser } from "./dictionary/AutoItem"
 import { InfoViewDefaultProps } from "./InfoView"
-import config from "../config"
+import { antdConfig }from "../index"
 
 export interface EditViewDefaultProps extends InfoViewDefaultProps {
   formProps?: FormProps
@@ -116,7 +116,7 @@ export default defineComponent({
       }
     },
     parseGrid(data: DefaultInfo) {
-      return config.parseGrid(this.gridParse!.parseData(data.$grid, 'main', this.type))
+      return antdConfig.parseGrid(this.gridParse!.parseData(data.$grid, 'main', this.type))
     },
     getItemProps(data: DefaultInfo, index: number) {
       return {

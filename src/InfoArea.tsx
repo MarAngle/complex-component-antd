@@ -5,7 +5,7 @@ import ObserveList from "complex-data/src/dictionary/ObserveList"
 import { AttrsValueInitOption } from "complex-data/src/lib/AttrsValue"
 import InfoView, { InfoViewDefaultProps } from "./InfoView"
 import { AutoItemPayloadType } from "./dictionary/AutoItem"
-import config from "../config"
+import { antdConfig }from "../index"
 
 export interface InfoAreaDefaultProps extends InfoViewDefaultProps {
   dictionary: DictionaryData
@@ -45,14 +45,14 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: () => {
-        return config.info.observe
+        return antdConfig.info.observe
       }
     },
     inline: {
       type: Boolean,
       required: false,
       default: () => {
-        return config.info.inline
+        return antdConfig.info.inline
       }
     },
     data: {

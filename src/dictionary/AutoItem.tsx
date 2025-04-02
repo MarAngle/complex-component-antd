@@ -10,7 +10,7 @@ import EditView from "../EditView"
 import InfoView from "../InfoView"
 import AutoEditItem from "./AutoEditItem"
 import AutoInfoItem from "./AutoInfoItem"
-import config from "../../config"
+import { antdConfig } from "../../index"
 
 export type AutoItemParser = 'info' | 'edit'
 
@@ -123,18 +123,18 @@ export default defineComponent({
       }
     },
     isEdit() {
-      return this.parser === 'edit' && config.isEdit(this.target)
+      return this.parser === 'edit' && antdConfig.isEdit(this.target)
     }
   },
   methods: {
     renderTip() {
-      const mainRender = config.component.parseData(this.target.$renders, 'main')
+      const mainRender = antdConfig.componentConfig.parseData(this.target.$renders, 'main')
       const item = !mainRender ? this.renderContent() : mainRender(this.payload)
       if (this.target.$tip) {
         return h(Tooltip, {
           title: this.target.$tip.getData ? this.target.$tip.getData(this.payload) : this.target.$tip.data,
           placement: this.target.$tip.location,
-          ...config.component.parseAttrs(this.target.$tip.$attrs)
+          ...antdConfig.componentConfig.parseAttrs(this.target.$tip.$attrs)
         }, {
           default: () => item
         })
@@ -143,13 +143,13 @@ export default defineComponent({
       }
     },
     renderLabel() {
-      const labelAttrs = config.component.parseData(this.target.$local, 'label') || new AttrsValue()
+      const labelAttrs = antdConfig.componentConfig.parseData(this.target.$local, 'label') || new AttrsValue()
       labelAttrs.pushClass('complex-auto-item-label')
       labelAttrs.pushClass(`complex-auto-item-${(this.parent as InstanceType<typeof EditView> | InstanceType<typeof InfoView>).labelAlign}-label`)
       if (this.target.colon && this.target.$name) {
         labelAttrs.pushClass('complex-auto-item-colon-label')
       }
-      return h('div', config.component.parseAttrs(labelAttrs), {
+      return h('div', antdConfig.componentConfig.parseAttrs(labelAttrs), {
         default: () => this.target.$name
       })
     },
@@ -166,8 +166,8 @@ export default defineComponent({
     }
   },
   render() {
-    if (config.parseCollapse(this.collapse, this.target.$collapse)) {
-      const mainRender = config.component.parseData(this.target.$renders, 'main')
+    if (antdConfig.parseCollapse(this.collapse, this.target.$collapse)) {
+      const mainRender = antdConfig.componentConfig.parseData(this.target.$renders, 'main')
       if (!mainRender) {
         if (this.isEdit) {
           // edit
@@ -185,27 +185,27 @@ export default defineComponent({
             mainAttributes.props.labelCol = this.gridParse!.parseData(this.target.$grid, 'label', this.type)
             mainAttributes.props.wrapperCol = this.gridParse!.parseData(this.target.$grid, 'content', this.type)
           }
-          mainAttributes.merge(config.component.parseData(this.target.$local, 'main'))
-          return h(FormItem, config.component.parseAttrs(mainAttributes), { default: () => this.renderTip() })
+          mainAttributes.merge(antdConfig.componentConfig.parseData(this.target.$local, 'main'))
+          return h(FormItem, antdConfig.componentConfig.parseAttrs(mainAttributes), { default: () => this.renderTip() })
         } else {
           // info
           const mainAttributes = new AttrsValue({
             class: ['complex-auto-item', 'complex-auto-item-info']
           })
-          mainAttributes.merge(config.component.parseData(this.target.$local, 'main'))
+          mainAttributes.merge(antdConfig.componentConfig.parseData(this.target.$local, 'main'))
           if (this.gridParse) {
-            return h(Row, config.component.parseAttrs(mainAttributes), {
+            return h(Row, antdConfig.componentConfig.parseAttrs(mainAttributes), {
               default: () => [
-                h(Col, config.parseGrid((this.payload.parent as InstanceType<typeof EditView> | InstanceType<typeof InfoView>).gridParse!.parseData(this.payload.target.$grid, 'label', this.payload.type)), {
+                h(Col, antdConfig.parseGrid((this.payload.parent as InstanceType<typeof EditView> | InstanceType<typeof InfoView>).gridParse!.parseData(this.payload.target.$grid, 'label', this.payload.type)), {
                   default: () => this.renderLabel()
                 }),
-                h(Col, config.parseGrid((this.payload.parent as InstanceType<typeof EditView> | InstanceType<typeof InfoView>).gridParse!.parseData(this.payload.target.$grid, 'content', this.payload.type)), {
+                h(Col, antdConfig.parseGrid((this.payload.parent as InstanceType<typeof EditView> | InstanceType<typeof InfoView>).gridParse!.parseData(this.payload.target.$grid, 'content', this.payload.type)), {
                   default: () => this.renderTip()
                 })
               ]
             })
           } else {
-            return h('div', config.component.parseAttrs(mainAttributes), {
+            return h('div', antdConfig.componentConfig.parseAttrs(mainAttributes), {
               default: () => [
                 this.renderLabel(),
                 this.renderTip()

@@ -5,7 +5,7 @@
 <script lang="ts">
 import { PropType, defineComponent } from "vue"
 import { SelectValueType } from "complex-data/src/lib/SelectValue"
-import config from "../config"
+import { antdConfig } from "../index"
 
 export default defineComponent({
   name: 'SelectText',
@@ -43,7 +43,7 @@ export default defineComponent({
     style() {
       if (this.value && this.color) {
         return {
-          color: this.disabled ? config.style.color.disabled : this.value.$color ? config.style.color[this.value.$color] : this.value.color ? this.value.color : this.value.disabled ? config.style.color.disabled : undefined
+          color: this.disabled ? antdConfig.dataConfig.style.color.disabled : this.value.$color ? antdConfig.dataConfig.style.color[this.value.$color] : this.value.color ? this.value.color : this.value.disabled ? antdConfig.dataConfig.style.color.disabled : undefined
         }
       }
     }

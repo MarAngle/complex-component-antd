@@ -18,6 +18,7 @@ import QuickCascade from "./quick/QuickCascade"
 import QuickEdit from "./quick/QuickEdit"
 import QuickFloat from "./quick/QuickFloat"
 import plugin from "./plugin"
+import antdConfig from "./antdConfig"
 
 export const ComplexAutoSpin = AutoSpin
 export const ComplexAutoText = AutoText
@@ -38,5 +39,9 @@ export const ComplexQuickList = QuickList
 export const ComplexQuickCascade = QuickCascade
 export const ComplexQuickEdit = QuickEdit
 export const ComplexQuickFloat = QuickFloat
+
+export {
+  antdConfig
+}
 
 export default plugin

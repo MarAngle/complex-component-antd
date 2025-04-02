@@ -7,7 +7,7 @@ import { FileMultipleValue, FileValue, fileValueType } from "complex-data/src/li
 import { FileView } from "complex-component"
 import { FileProps, MultipleFileProps } from "complex-component/type"
 import { DefaultImportProps } from "./SingleImport"
-import config from "../config"
+import { antdConfig }from "../index"
 
 export interface MultipleImportProps extends FileProps, MultipleFileProps, DefaultImportProps{
   value?: fileValueType[]
@@ -185,7 +185,7 @@ export default defineComponent({
     }
 
     const renderContent = (file: FileValue, index: number) => {
-      return config.import.renderContent(file, props.disabled, props.image, () => {
+      return antdConfig.import.renderContent(file, props.disabled, props.image, () => {
         deleteData(file.value, index)
       })
     }
@@ -222,7 +222,7 @@ export default defineComponent({
     }, {
       default: () => [
         this.renderFile(),
-        config.import.renderMenu(this as any),
+        antdConfig.import.renderMenu(this as any),
         content
       ]
     })

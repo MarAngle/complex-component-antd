@@ -5,7 +5,7 @@ import DefaultInfo from "complex-data/src/dictionary/DefaultInfo"
 import AttrsValue, { AttrsValueInitOption } from "complex-data/src/lib/AttrsValue"
 import GridParse from "complex-data/src/lib/GridParse"
 import AutoItem, { AutoItemPayloadType, AutoItemProps } from "./dictionary/AutoItem"
-import config from "../config"
+import { antdConfig }from "../index"
 
 export interface InfoViewDefaultProps {
   menu?: DefaultInfo[]
@@ -99,7 +99,7 @@ export default defineComponent({
   },
   methods: {
     parseGrid(data: DefaultInfo) {
-      return config.parseGrid(this.gridParse!.parseData(data.$grid, 'main', this.type))
+      return antdConfig.parseGrid(this.gridParse!.parseData(data.$grid, 'main', this.type))
     },
     getItemProps(data: DefaultInfo, index: number) {
       return {
@@ -141,7 +141,7 @@ export default defineComponent({
    */
   render() {
     const list = this.renderList()
-    return h('div', config.component.parseAttrs(this.currentInfoAttrs), this.gridParse ? [
+    return h('div', antdConfig.componentConfig.parseAttrs(this.currentInfoAttrs), this.gridParse ? [
       h(Row, { ...this.gridRowProps }, {
         default: () => list
       })

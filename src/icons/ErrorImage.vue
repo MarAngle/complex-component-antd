@@ -8,7 +8,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue"
 import { localIconProps } from "../../icon"
-import config from "../../config"
+import { antdConfig } from "../../index"
 
 export default defineComponent({
   name: 'ErrorImage',
@@ -22,7 +22,7 @@ export default defineComponent({
       type: String as PropType<localIconProps['color']>,
       required: false,
       default: () => {
-        return config.style.color.danger
+        return antdConfig.dataConfig.style.color.danger
       }
     }
   }

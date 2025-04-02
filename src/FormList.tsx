@@ -4,7 +4,7 @@ import { FormValue } from "complex-data"
 import ListEdit from "complex-data/src/dictionary/ListEdit"
 import MenuView from "./MenuView"
 import { customRenderPayload, tablePayload } from "./TableView"
-import config from "../config"
+import { antdConfig }from "../index"
 import AutoEditItem from "./dictionary/AutoEditItem"
 import { AutoItemPayloadType } from "./dictionary/AutoItem"
 import AutoInfoItem from "./dictionary/AutoInfoItem"
@@ -63,25 +63,25 @@ export default defineComponent({
         for (let i = 0; i < columnList.length; i++) {
           const column = columnList[i]
           const currentProp = column.$prop
-          const targetRender = this.$slots[currentProp] || config.component.parseData(column.$renders, 'target')
-          const pureRender = config.component.parseData(column.$renders, 'pure')
-          const attrs = config.component.parseData(column.$local, 'target')
+          const targetRender = this.$slots[currentProp] || antdConfig.componentConfig.parseData(column.$renders, 'target')
+          const pureRender = antdConfig.componentConfig.parseData(column.$renders, 'pure')
+          const attrs = antdConfig.componentConfig.parseData(column.$local, 'target')
           const columnItem: TableColumnType = {
             dataIndex: currentProp,
             title: column.$name,
             width: column.$width,
             ellipsis: false,
-            ...config.component.parseAttrs(attrs)
+            ...antdConfig.componentConfig.parseAttrs(attrs)
           }
           if (!pureRender) {
             if (!targetRender) {
               columnItem.customRender = ({ record, index }: customRenderPayload) => {
-                if (currentProp === config.table.auto.index.prop) {
+                if (currentProp === antdConfig.table.auto.index.prop) {
                   // 自动index
-                  return config.table.renderIndex(record, index, undefined)
+                  return antdConfig.table.renderIndex(record, index, undefined)
                 }
                 const form = this.runtime.formList![index]
-                if (config.isEdit(column)) {
+                if (antdConfig.isEdit(column)) {
                   return h(FormItemRest, {}, {
                     default: () => [
                      h(AutoEditItem, {
@@ -127,7 +127,7 @@ export default defineComponent({
                   index: index,
                   payload: { column: column }
                 }
-                text = config.table.renderTableValue(text, payload)
+                text = antdConfig.table.renderTableValue(text, payload)
                 if (targetRender) {
                   // 插槽
                   return targetRender({
@@ -137,7 +137,7 @@ export default defineComponent({
                 }
                 if (columnItem.ellipsis) {
                   // 自动省略切自动换行
-                  return config.table.renderAutoText(text as string, column, payload, config.component.parseData(column.$local, 'autoText'))
+                  return antdConfig.table.renderAutoText(text as string, column, payload, antdConfig.componentConfig.parseData(column.$local, 'autoText'))
                 }
                 return text
               }

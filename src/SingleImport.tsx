@@ -5,7 +5,7 @@ import { FileEditOption } from "complex-data/src/dictionary/FileEdit"
 import { FileValue, fileValueType } from "complex-data/src/lib/FileValue"
 import { FileView } from "complex-component"
 import { FileProps } from "complex-component/type"
-import config from "../config"
+import { antdConfig }from "../index"
 
 export interface DefaultImportProps {
   button?: defaultFileOption['button']
@@ -145,7 +145,7 @@ export default defineComponent({
     }
 
     const renderContent = (file?: FileValue) => {
-      return (file && file.value) ? config.import.renderContent(file, props.disabled, props.image, () => {
+      return (file && file.value) ? antdConfig.import.renderContent(file, props.disabled, props.image, () => {
         deleteData()
       }) : null
     }
@@ -180,7 +180,7 @@ export default defineComponent({
     }, {
       default: () => [
         this.renderFile(),
-        config.import.renderMenu(this as any),
+        antdConfig.import.renderMenu(this as any),
         content,
       ]
     })

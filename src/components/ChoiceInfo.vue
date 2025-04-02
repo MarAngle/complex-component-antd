@@ -20,7 +20,7 @@
 <script lang="ts">
 import { PropType, defineComponent } from "vue"
 import { ChoiceData } from "complex-data"
-import config from "../../config"
+import { antdConfig } from "../../index"
 
 export default defineComponent({
   name: 'ChoiceInfo',
@@ -32,12 +32,12 @@ export default defineComponent({
     show: {
       type: Boolean,
       required: false,
-      default: () => config.choice.show
+      default: () => antdConfig.choice.show
     },
     menu: {
       type: Boolean,
       required: false,
-      default: () => config.choice.menu
+      default: () => antdConfig.choice.menu
     },
     formatInfo: {
       type: Function as PropType<(payload: { choice: ChoiceData, size: number, menu: boolean }) => string>,
@@ -46,7 +46,7 @@ export default defineComponent({
     emptyContent: {
       type: String,
       required: false,
-      default: () => config.choice.emptyContent
+      default: () => antdConfig.choice.emptyContent
     },
   },
   computed: {
@@ -61,7 +61,7 @@ export default defineComponent({
       }
     },
     currentFormatInfo() {
-      return this.formatInfo || config.choice.formatInfo
+      return this.formatInfo || antdConfig.choice.formatInfo
     }
   },
   methods: {

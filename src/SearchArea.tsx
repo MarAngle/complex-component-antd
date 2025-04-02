@@ -3,7 +3,7 @@ import { DefaultInfo, SearchData } from "complex-data"
 import { DictionaryEditMod } from "complex-data/src/lib/DictionaryValue"
 import EditView, { EditViewDefaultProps } from "./EditView"
 import { AutoItemPayloadType } from "./dictionary/AutoItem"
-import config from "../config"
+import { antdConfig }from "../index"
 
 export interface SearchAreaProps extends EditViewDefaultProps {
   search: SearchData
@@ -41,7 +41,7 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: () => {
-        return config.search.inline
+        return antdConfig.search.inline
       }
     },
     formProps: { // form-model-view设置项
@@ -81,7 +81,7 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: () => {
-        return config.search.collapse
+        return antdConfig.search.collapse
       }
     },
     disabled: {
@@ -143,7 +143,7 @@ export default defineComponent({
             class: 'complex-search-area-collapse-menu'
           },
           [
-            !this.collapseMenuRender ? config.collapseMenuRender(this.search.$collapse, this.search) : this.collapseMenuRender(this.search.$collapse)
+            !this.collapseMenuRender ? antdConfig.collapseMenuRender(this.search.$collapse, this.search) : this.collapseMenuRender(this.search.$collapse)
           ]
         )
       } else {

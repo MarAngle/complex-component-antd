@@ -6,7 +6,7 @@ import DefaultList from "complex-data/src/dictionary/DefaultList"
 import PaginationView from "./components/PaginationView"
 import TableMenu from "./components/TableMenu"
 import { tablePayload, TableViewDefaultProps } from "./TableView"
-import config from "../config"
+import { antdConfig }from "../index"
 
 export interface SimpleTableProps extends TableViewDefaultProps {
   lineHeight?: number
@@ -72,7 +72,7 @@ export default defineComponent({
       })
     },
     currentAuto() {
-      return updateData(deepCloneData(config.table.auto), this.auto)
+      return updateData(deepCloneData(antdConfig.table.auto), this.auto)
     },
     currentPaginationData() {
       if (this.paginationData) {
@@ -92,7 +92,7 @@ export default defineComponent({
     rowWidth(column: DefaultList | DefaultInfo) {
       if (column.$width) {
         return {
-          width: typeof column.$width === 'number' ? config.component.data.formatPixel(column.$width) : column.$width
+          width: typeof column.$width === 'number' ? antdConfig.dataConfig.formatPixel(column.$width) : column.$width
         }
       } else {
         return undefined
@@ -138,7 +138,7 @@ export default defineComponent({
       } else {
         return h('div', {
           style: {
-            height: config.component.data.formatPixel(this.lineHeight)
+            height: antdConfig.dataConfig.formatPixel(this.lineHeight)
           }
         }, content)
       }
@@ -150,10 +150,10 @@ export default defineComponent({
         index: index,
         payload: { column: column }
       }
-      const text = config.table.renderTableValue(record[column.$prop], payload)
-      const targetRender = config.component.parseData(column.$renders, 'target')
-      const pureRender = config.component.parseData(column.$renders, 'pure')
-      const menuOption = config.component.parseData(this.menu, column.$prop)
+      const text = antdConfig.table.renderTableValue(record[column.$prop], payload)
+      const targetRender = antdConfig.componentConfig.parseData(column.$renders, 'target')
+      const pureRender = antdConfig.componentConfig.parseData(column.$renders, 'pure')
+      const menuOption = antdConfig.componentConfig.parseData(this.menu, column.$prop)
       if (pureRender) {
         return pureRender({
           text: text,
@@ -173,12 +173,12 @@ export default defineComponent({
           }
         })
       } else if (column.$prop === this.currentAuto.index.prop) {
-        return config.table.renderIndex(record, index, this.currentAuto.index.pagination ? this.currentPaginationData : undefined)
+        return antdConfig.table.renderIndex(record, index, this.currentAuto.index.pagination ? this.currentPaginationData : undefined)
       } else if ((column as DefaultList).ellipsis) {
         // 自动省略切自动换行
-        return config.table.renderAutoText(text as string, column, payload, config.component.parseData(column.$local, 'autoText'))
+        return antdConfig.table.renderAutoText(text as string, column, payload, antdConfig.componentConfig.parseData(column.$local, 'autoText'))
       } else {
-        return h('p', config.component.parseAttrs(config.component.parseData(column.$local, 'target')), {
+        return h('p', antdConfig.componentConfig.parseAttrs(antdConfig.componentConfig.parseData(column.$local, 'target')), {
           default: () => text
         })
       }

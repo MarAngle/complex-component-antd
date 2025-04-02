@@ -8,7 +8,7 @@ import DefaultList from "complex-data/src/dictionary/DefaultList"
 import PaginationView from "./components/PaginationView"
 import ChoiceInfo from "./components/ChoiceInfo.vue"
 import TableMenu, { TableMenuValue } from "./components/TableMenu"
-import config from "../config"
+import { antdConfig }from "../index"
 
 export type customRenderPayload = { text: unknown, record: Record<PropertyKey, unknown>, index: number }
 
@@ -129,7 +129,7 @@ export default defineComponent({
       })
     },
     currentAuto() {
-      return updateData(deepCloneData(config.table.auto), this.auto)
+      return updateData(deepCloneData(antdConfig.table.auto), this.auto)
     },
     currentPaginationData() {
       if (this.paginationData) {
@@ -147,17 +147,17 @@ export default defineComponent({
       for (let i = 0; i < columnList.length; i++) {
         const column = columnList[i]
         const currentProp = column.$prop
-        const targetRender = this.$slots[currentProp] || config.component.parseData(column.$renders, 'target')
-        const pureRender = config.component.parseData(column.$renders, 'pure')
-        const menuOption = config.component.parseData(this.menu, currentProp)
-        const attrs = config.component.parseData(column.$local, 'target')
+        const targetRender = this.$slots[currentProp] || antdConfig.componentConfig.parseData(column.$renders, 'target')
+        const pureRender = antdConfig.componentConfig.parseData(column.$renders, 'pure')
+        const menuOption = antdConfig.componentConfig.parseData(this.menu, currentProp)
+        const attrs = antdConfig.componentConfig.parseData(column.$local, 'target')
         const columnItem: ColumnItemType = {
           dataIndex: currentProp,
           title: column.$name,
           align: (column as DefaultList).align,
           width: column.$width,
           ellipsis: (column as DefaultList).ellipsis,
-          ...config.component.parseAttrs(attrs)
+          ...antdConfig.componentConfig.parseAttrs(attrs)
         }
         if (this.currentSort) {
           const config = this.currentSort.getConfig(currentProp)
@@ -174,7 +174,7 @@ export default defineComponent({
             columnItem.customRender = ({ text, record, index }: customRenderPayload) => {
               if (currentProp === this.currentAuto.index.prop && !targetRender) {
                 // 自动index
-                return config.table.renderIndex(record, index, this.currentAuto.index.pagination ? this.currentPaginationData : undefined)
+                return antdConfig.table.renderIndex(record, index, this.currentAuto.index.pagination ? this.currentPaginationData : undefined)
               }
               const payload: tablePayload = {
                 targetData: record,
@@ -182,7 +182,7 @@ export default defineComponent({
                 index: index,
                 payload: { column: column }
               }
-              text = config.table.renderTableValue(text, payload)
+              text = antdConfig.table.renderTableValue(text, payload)
               if (targetRender) {
                 // 插槽
                 return targetRender({
@@ -192,7 +192,7 @@ export default defineComponent({
               }
               if (columnItem.ellipsis) {
                 // 自动省略切自动换行
-                return config.table.renderAutoText(text as string, column, payload, config.component.parseData(column.$local, 'autoText'))
+                return antdConfig.table.renderAutoText(text as string, column, payload, antdConfig.componentConfig.parseData(column.$local, 'autoText'))
               }
               return text
             }
@@ -267,7 +267,7 @@ export default defineComponent({
             choice.pushData(selectedRowKeys, selectedRows)
             this.$emit('choice', choice.data.id, choice.data.list)
           },
-          ...config.component.parseAttrs(config.component.parseData(choice.$local, 'target'))
+          ...antdConfig.componentConfig.parseAttrs(antdConfig.componentConfig.parseData(choice.$local, 'target'))
         }
       }
       if (this.currentSort) {
@@ -335,17 +335,17 @@ export default defineComponent({
     renderChoiceInfo() {
       const choice = this.listData?.$module.choice
       if (choice) {
-        const infoRender = config.component.parseData(choice.$renders, 'info')
+        const infoRender = antdConfig.componentConfig.parseData(choice.$renders, 'info')
         if (!infoRender) {
           return h(ChoiceInfo, {
             class: 'complex-table-choice-info',
             choice: choice,
-            ...config.component.parseAttrs(config.component.parseData(choice.$local, 'info'))
+            ...antdConfig.componentConfig.parseAttrs(antdConfig.componentConfig.parseData(choice.$local, 'info'))
           })
         } else {
           return infoRender({
             choice: choice,
-            ...config.component.parseAttrs(config.component.parseData(choice.$local, 'info'))
+            ...antdConfig.componentConfig.parseAttrs(antdConfig.componentConfig.parseData(choice.$local, 'info'))
           })
         }
       } else {

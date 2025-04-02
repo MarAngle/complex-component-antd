@@ -8,7 +8,7 @@ import DefaultEdit, { ruleOption } from 'complex-data/src/dictionary/DefaultEdit
 import SimpleDateEdit from "complex-data/src/dictionary/SimpleDateEdit"
 import LayoutResizeObserver from "./LayoutResizeObserver"
 import './src/style/index.css'
-import config from "./config"
+import { antdConfig } from "./index"
 
 export type ComplexComponentAntdOptions = {
   reactive?: boolean
@@ -46,10 +46,10 @@ const plugin = {
       }
     }
     if (options.style !== false) {
-      config.initStyle()
+      antdConfig.initStyle()
     }
     if (options && options.pluginLayout) {
-      config.pluginLayout = options.pluginLayout
+      antdConfig.pluginLayout = options.pluginLayout
       LayoutResizeObserver.init(options.pluginLayout)
     }
     FormValue.clearValidate = function(formValue, ...args: Parameters<FormInstance['clearValidate']>) {

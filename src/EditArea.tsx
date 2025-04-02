@@ -5,7 +5,7 @@ import ObserveList from "complex-data/src/dictionary/ObserveList"
 import EditView, { EditViewDefaultProps } from "./EditView"
 import { InfoAreaDefaultProps } from "./InfoArea"
 import { AutoItemPayloadType } from "./dictionary/AutoItem"
-import config from "../config"
+import { antdConfig }from "../index"
 
 export type EditAreaDataType = undefined | Record<PropertyKey, unknown>
 
@@ -48,14 +48,14 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: () => {
-        return config.edit.observe
+        return antdConfig.edit.observe
       }
     },
     inline: {
       type: Boolean,
       required: false,
       default: () => {
-        return config.edit.inline
+        return antdConfig.edit.inline
       }
     },
     form: {

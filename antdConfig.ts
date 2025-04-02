@@ -3,15 +3,14 @@ import { Button } from "ant-design-vue"
 import { ButtonType } from "ant-design-vue/es/button"
 import { getType, camelToLine, downloadFile, parseColor } from "complex-utils"
 import { notice, PluginLayout } from "complex-plugin"
-import { ChoiceData, PaginationData, AttrsValue, DictionaryData, DictionaryValue, DefaultInfo } from "complex-data"
+import { ChoiceData, PaginationData, AttrsValue, DictionaryData, DictionaryValue, DefaultInfo, dataConfig } from "complex-data"
 import DefaultList from 'complex-data/src/dictionary/DefaultList'
 import DefaultEdit from "complex-data/src/dictionary/DefaultEdit"
 import { GridValue } from "complex-data/src/lib/GridParse"
 import { FileValue } from "complex-data/src/lib/FileValue"
 import { collapseType } from "complex-data/src/dictionary/DefaultMod"
 import { defaultFileOption, MenuValue } from "complex-data/type"
-import { AutoIndex, FileView } from "complex-component"
-import componentConfig from "complex-component/config"
+import { AutoIndex, FileView, componentConfig } from "complex-component"
 import AutoText from "./src/AutoText.vue"
 import { modalLayoutOption } from "./src/ModalView"
 import { tablePayload } from "./src/TableView"
@@ -43,8 +42,9 @@ export class LayoutLifeData {
   }
 }
 
-const config = {
-  component: componentConfig,
+const antdConfig = {
+  componentConfig: componentConfig,
+  dataConfig: dataConfig,
   pluginLayout: null as null | PluginLayout,
   isEdit(target: DefaultInfo) {
     return target instanceof DefaultEdit && target.$editable === true
@@ -94,32 +94,16 @@ const config = {
     }
   },
   style: {
-    element: undefined as undefined | HTMLStyleElement,
-    color: {
-      primary: '#1677ff',
-      success: '#52c41a',
-      link: '#1677ff',
-      realLink: 'rgba(24,144,255,1)',
-      warning: '#faad14',
-      danger: '#ff4d4f',
-      disabled: 'rgba(0,0,0,0.25)',
-      headText: 'rgba(0,0,0,0.85)',
-      text: 'rgba(0,0,0,0.65)',
-      secondaryText: 'rgba(0,0,0,0.45)',
-      border: 'rgba(217,217,217,1)',
-    } as Record<string, string>,
-    data: {
-      boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
-    } as Record<string, string | number>
+    element: undefined as undefined | HTMLStyleElement
   },
   initStyle() {
     let rootInnerHTML = ":root{"
     let styleInnerHTML = ""
-    for (const name in config.style.color) {
+    for (const name in antdConfig.dataConfig.style.color) {
       const styleName = camelToLine(name, '-')
       const styleProp = 'complex-color-' + styleName
       const styleVarProp = '--' + styleProp
-      const styleValue = config.style.color[name]
+      const styleValue = antdConfig.dataConfig.style.color[name]
       const rgba = parseColor(styleValue)
       const rgbStr = `${rgba?.r},${rgba?.g},${rgba?.b}`
       rootInnerHTML += `\n${styleVarProp}-rgb:${rgbStr};`
@@ -128,10 +112,10 @@ const config = {
       styleInnerHTML += `\n.${styleProp}{color:var(${styleVarProp});}`
       styleInnerHTML += `\n.complex-bg-color-${styleName}{background-color:var(${styleVarProp});}`
     }
-    config.style.data.animateTime = componentConfig.animateTime
-    for (const name in config.style.data) {
+    antdConfig.dataConfig.style.data.animateTime = componentConfig.animateTime
+    for (const name in antdConfig.dataConfig.style.data) {
       const styleVarProp = '--complex-style-' + camelToLine(name, '-')
-      const styleValue = config.style.data[name]
+      const styleValue = antdConfig.dataConfig.style.data[name]
       rootInnerHTML += `\n${styleVarProp}:${styleValue};`
     }
     rootInnerHTML += "\n}"
@@ -197,7 +181,7 @@ const config = {
       if (parent && parent.parse) {
         text = parent.parse(text, payload)
       }
-      return config.showValue(text)
+      return antdConfig.showValue(text)
     },
     renderAutoText(text: string, column: DefaultList | DefaultInfo, payload: tablePayload, attrs?: AttrsValue) {
       return h(AutoText, {
@@ -272,7 +256,7 @@ const config = {
       }
     } as Record<string, MenuValue>,
     getMenu(prop: string, targetOption?: Partial<MenuValue>): MenuValue {
-      const data = this.menu[prop as keyof typeof config.modal.menu]
+      const data = this.menu[prop as keyof typeof antdConfig.modal.menu]
       if (data) {
         return {
           ...data,
@@ -350,7 +334,7 @@ const config = {
           ]
         })
       } else {
-        const width = config.component.data.formatPixel(image.width)
+        const width = antdConfig.componentConfig.dataConfig.formatPixel(image.width)
         return h('div', {
           class: 'complex-import-image',
           style: {
@@ -377,4 +361,4 @@ const config = {
 }
 
 
-export default config
+export default antdConfig
