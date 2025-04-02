@@ -3,7 +3,7 @@ import { Modal, ModalProps } from "ant-design-vue"
 import { deepCloneData, updateData } from "complex-utils"
 import { MenuValue } from "complex-data/type"
 import ButtonView from "./ButtonView"
-import { antdConfig }from "../index"
+import antdConfig from "../antdConfig"
 
 export type modalLayoutOption = {
   type: 'auto' | 'fixed'

@@ -1,6 +1,6 @@
 import { defineComponent, h, nextTick, onBeforeMount, onMounted, PropType, ref, VNode } from "vue"
 import LocalResizeObserver from "../LocalResizeObserver"
-import { antdConfig }from "../index"
+import antdConfig from "../antdConfig"
 
 export interface CollapseAreaProps {
   height: number

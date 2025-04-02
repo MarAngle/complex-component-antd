@@ -1,7 +1,7 @@
 import { defineComponent, h, PropType, VNode } from "vue"
 import ModalView, { ModalViewProps } from "./ModalView"
 import icon, { localIconProps } from "../icon"
-import { antdConfig }from "../index"
+import antdConfig from "../antdConfig"
 
 type renderType = (payload: localIconProps) => VNode | VNode[]
 

@@ -1,5 +1,5 @@
 import { PropType, defineComponent, h } from 'vue'
-import { antdConfig }from "../index"
+import antdConfig from "../antdConfig"
 
 const paddingPropList = ['paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft'] as const
 

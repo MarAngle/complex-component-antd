@@ -5,7 +5,7 @@ import { FileEditOption } from "complex-data/src/dictionary/FileEdit"
 import { FileValue, fileValueType } from "complex-data/src/lib/FileValue"
 import { FileView } from "complex-component"
 import { FileProps } from "complex-component/type"
-import { antdConfig }from "../index"
+import antdConfig from "../antdConfig"
 
 export interface DefaultImportProps {
   button?: defaultFileOption['button']

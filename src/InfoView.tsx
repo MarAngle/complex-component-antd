@@ -5,7 +5,7 @@ import DefaultInfo from "complex-data/src/dictionary/DefaultInfo"
 import AttrsValue, { AttrsValueInitOption } from "complex-data/src/lib/AttrsValue"
 import GridParse from "complex-data/src/lib/GridParse"
 import AutoItem, { AutoItemPayloadType, AutoItemProps } from "./dictionary/AutoItem"
-import { antdConfig }from "../index"
+import antdConfig from "../antdConfig"
 
 export interface InfoViewDefaultProps {
   menu?: DefaultInfo[]

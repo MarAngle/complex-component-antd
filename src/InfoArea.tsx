@@ -5,7 +5,7 @@ import ObserveList from "complex-data/src/dictionary/ObserveList"
 import { AttrsValueInitOption } from "complex-data/src/lib/AttrsValue"
 import InfoView, { InfoViewDefaultProps } from "./InfoView"
 import { AutoItemPayloadType } from "./dictionary/AutoItem"
-import { antdConfig }from "../index"
+import antdConfig from "../antdConfig"
 
 export interface InfoAreaDefaultProps extends InfoViewDefaultProps {
   dictionary: DictionaryData

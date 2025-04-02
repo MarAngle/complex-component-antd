@@ -6,7 +6,7 @@ import ObserveList from "complex-data/src/dictionary/ObserveList"
 import DefaultInfo from "complex-data/src/dictionary/DefaultInfo"
 import AutoItem, { AutoItemPayloadType, AutoItemProps, AutoItemParser } from "./dictionary/AutoItem"
 import { InfoViewDefaultProps } from "./InfoView"
-import { antdConfig }from "../index"
+import antdConfig from "../antdConfig"
 
 export interface EditViewDefaultProps extends InfoViewDefaultProps {
   formProps?: FormProps

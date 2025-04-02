@@ -8,7 +8,7 @@ import DefaultList from "complex-data/src/dictionary/DefaultList"
 import PaginationView from "./components/PaginationView"
 import ChoiceInfo from "./components/ChoiceInfo.vue"
 import TableMenu, { TableMenuValue } from "./components/TableMenu"
-import { antdConfig }from "../index"
+import antdConfig from "../antdConfig"
 
 export type customRenderPayload = { text: unknown, record: Record<PropertyKey, unknown>, index: number }
 

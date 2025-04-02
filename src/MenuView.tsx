@@ -4,7 +4,7 @@ import { ButtonType } from "ant-design-vue/es/button"
 import { isPromise } from "complex-utils"
 import { MenuValue } from "complex-data/type"
 import icon from "../icon"
-import { antdConfig }from "../index"
+import antdConfig from "../antdConfig"
 
 export default defineComponent({
   name: 'MenuView',

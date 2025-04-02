@@ -7,7 +7,7 @@ import { FileMultipleValue, FileValue, fileValueType } from "complex-data/src/li
 import { FileView } from "complex-component"
 import { FileProps, MultipleFileProps } from "complex-component/type"
 import { DefaultImportProps } from "./SingleImport"
-import { antdConfig }from "../index"
+import antdConfig from "../antdConfig"
 
 export interface MultipleImportProps extends FileProps, MultipleFileProps, DefaultImportProps{
   value?: fileValueType[]

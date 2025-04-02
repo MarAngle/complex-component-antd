@@ -3,7 +3,7 @@ import { DefaultInfo, SearchData } from "complex-data"
 import { DictionaryEditMod } from "complex-data/src/lib/DictionaryValue"
 import EditView, { EditViewDefaultProps } from "./EditView"
 import { AutoItemPayloadType } from "./dictionary/AutoItem"
-import { antdConfig }from "../index"
+import antdConfig from "../antdConfig"
 
 export interface SearchAreaProps extends EditViewDefaultProps {
   search: SearchData

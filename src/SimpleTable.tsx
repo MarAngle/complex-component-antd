@@ -6,7 +6,7 @@ import DefaultList from "complex-data/src/dictionary/DefaultList"
 import PaginationView from "./components/PaginationView"
 import TableMenu from "./components/TableMenu"
 import { tablePayload, TableViewDefaultProps } from "./TableView"
-import { antdConfig }from "../index"
+import antdConfig from "../antdConfig"
 
 export interface SimpleTableProps extends TableViewDefaultProps {
   lineHeight?: number

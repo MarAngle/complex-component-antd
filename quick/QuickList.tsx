@@ -13,7 +13,7 @@ import InfoArea, { InfoAreaOption, InfoAreaProps } from "./../src/InfoArea"
 // import CollapseArea, { CollapseAreaProps } from "./../src/CollapseArea"
 import { AutoItemPayloadType } from "./../src/dictionary/AutoItem"
 import FloatData from "./data/FloatData"
-import { antdConfig } from "./../index"
+import antdConfig from "../antdConfig"
 
 export interface ListModalViewProps extends ModalViewProps {
   formatName?: (name: string, payload?: unknown) => string

@@ -5,7 +5,7 @@ import ObserveList from "complex-data/src/dictionary/ObserveList"
 import EditView, { EditViewDefaultProps } from "./EditView"
 import { InfoAreaDefaultProps } from "./InfoArea"
 import { AutoItemPayloadType } from "./dictionary/AutoItem"
-import { antdConfig }from "../index"
+import antdConfig from "../antdConfig"
 
 export type EditAreaDataType = undefined | Record<PropertyKey, unknown>
 
