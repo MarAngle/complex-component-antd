@@ -41,16 +41,9 @@ export default defineComponent({
   },
   computed: {
     style() {
-      if (this.value) {
-        if (this.value.color) {
-          return {
-            color: !this.value.$color ? this.value.color : config.style.color[this.value.$color]
-          }
-        }
-        if (this.disabled && this.value.disabled) {
-          return {
-            color: config.style.color.disabled
-          }
+      if (this.value && this.color) {
+        return {
+          color: this.disabled ? config.style.color.disabled : this.value.$color ? config.style.color[this.value.$color] : this.value.color ? this.value.color : this.value.disabled ? config.style.color.disabled : undefined
         }
       }
     }

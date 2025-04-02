@@ -12,7 +12,7 @@
 ### Doing
 - 简化SimpleTable，可自定义组件，通过此组件实现ListEdit
 
-### 4.8.15
+### 4.8.15/16
 - feat:SelectText适配$color模式，此模式下取config.style.color的颜色动态赋值
 
 ### 4.8.14
