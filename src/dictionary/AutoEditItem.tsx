@@ -8,7 +8,7 @@ import EditView from "../EditView"
 import SingleImport from "../SingleImport"
 import MultipleImport from "../MultipleImport"
 import { parseEditAttrs } from "../../format"
-import { antdConfig } from "../../index"
+import antdConfig from "../../antdConfig"
 
 export default defineComponent({
   name: 'AutoEditItem',
@@ -34,7 +34,7 @@ export default defineComponent({
     targetAttrs.merge(antdConfig.componentConfig.parseData(target.$local, 'target'))
     let item = null
     if (!(this.payload.parent as InstanceType<typeof EditView>).gridParse && target.$width) {
-      targetAttrs.style.width = typeof target.$width === 'number' ? antdConfig.componentConfig.data.formatPixel(target.$width) : target.$width
+      targetAttrs.style.width = typeof target.$width === 'number' ? antdConfig.dataConfig.formatPixel(target.$width) : target.$width
     }
     const targetRender = antdConfig.componentConfig.parseData(target.$renders, 'target')
     const option = antdConfig.componentConfig.parseAttrs(targetAttrs)

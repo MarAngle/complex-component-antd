@@ -8,7 +8,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue"
 import { localIconProps } from "../../icon"
-import { antdConfig } from "../../index"
+import antdConfig from "../../antdConfig"
 
 export default defineComponent({
   name: 'ErrorImage',

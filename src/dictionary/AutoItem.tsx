@@ -10,7 +10,7 @@ import EditView from "../EditView"
 import InfoView from "../InfoView"
 import AutoEditItem from "./AutoEditItem"
 import AutoInfoItem from "./AutoInfoItem"
-import { antdConfig } from "../../index"
+import antdConfig from "../../antdConfig"
 
 export type AutoItemParser = 'info' | 'edit'
 

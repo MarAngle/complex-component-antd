@@ -7,7 +7,7 @@ import FormEdit from "complex-data/src/dictionary/FormEdit"
 import ButtonView from "../ButtonView"
 import { AutoItemPayloadType, AutoItemParser } from "./AutoItem"
 import InfoView, { InfoViewProps } from "../InfoView"
-import { antdConfig } from "../../index"
+import antdConfig from "../../antdConfig"
 
 export const bindButtonClick = function(prop: string, option: ButtonEdit['$option'], payload: AutoItemPayloadType<AutoItemParser>) {
   if (!option.upload) {
@@ -43,7 +43,7 @@ export default defineComponent({
     } else {
       const targetAttrs = antdConfig.componentConfig.parseData(this.payload.target.$local, 'target') || new AttrsValue()
       if (!(this.payload.parent as InstanceType<typeof InfoView>).gridParse && this.payload.target.$width) {
-        targetAttrs.style.width = typeof this.payload.target.$width === 'number' ? antdConfig.componentConfig.data.formatPixel(this.payload.target.$width) : this.payload.target.$width
+        targetAttrs.style.width = typeof this.payload.target.$width === 'number' ? antdConfig.dataConfig.formatPixel(this.payload.target.$width) : this.payload.target.$width
       }
       if (this.payload.target instanceof ButtonEdit) {
         const option = {

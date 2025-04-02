@@ -12,7 +12,7 @@
 ### Doing
 - 简化SimpleTable，可自定义组件，通过此组件实现ListEdit
 
-### 4.8.17
+### 4.8.17/18
 - feat:config=>antdConfig,style迁移到dataConfig中
 
 ### 4.8.15/16

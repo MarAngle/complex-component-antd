@@ -5,7 +5,7 @@
 <script lang="ts">
 import { PropType, defineComponent } from "vue"
 import { SelectValueType } from "complex-data/src/lib/SelectValue"
-import { antdConfig } from "../index"
+import antdConfig from "../antdConfig"
 
 export default defineComponent({
   name: 'SelectText',

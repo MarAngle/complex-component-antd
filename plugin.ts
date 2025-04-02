@@ -8,7 +8,7 @@ import DefaultEdit, { ruleOption } from 'complex-data/src/dictionary/DefaultEdit
 import SimpleDateEdit from "complex-data/src/dictionary/SimpleDateEdit"
 import LayoutResizeObserver from "./LayoutResizeObserver"
 import './src/style/index.css'
-import { antdConfig } from "./index"
+import antdConfig from "./antdConfig"
 
 export type ComplexComponentAntdOptions = {
   reactive?: boolean

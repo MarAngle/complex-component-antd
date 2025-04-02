@@ -1,7 +1,7 @@
 import { defineComponent, h, PropType } from "vue"
 import { Pagination } from "ant-design-vue"
 import { AttrsValue, PaginationData } from "complex-data"
-import { antdConfig } from "../../index"
+import antdConfig from "../../antdConfig"
 
 export default defineComponent({
   name: 'PaginationView',

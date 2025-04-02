@@ -20,7 +20,7 @@
 <script lang="ts">
 import { PropType, defineComponent } from "vue"
 import { ChoiceData } from "complex-data"
-import { antdConfig } from "../../index"
+import antdConfig from "../../antdConfig"
 
 export default defineComponent({
   name: 'ChoiceInfo',
