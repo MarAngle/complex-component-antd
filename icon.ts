@@ -27,10 +27,10 @@ export const iconDict: Record<string, (props?: Record<PropertyKey, any>) => VNod
   up: (props) => h(UpOutlined, props)
 })
 
-export const localIconDict: Record<string, Component> = reactive({
+export const localIconDict: Record<string, Component> = {
   emptyImage: EmptyImage,
   errorImage: ErrorImage
-})
+}
 
 const icon = reactive({
   parse(name: MenuValue['icon']) {

@@ -12,7 +12,7 @@
 ### Doing
 - 简化SimpleTable，可自定义组件，通过此组件实现ListEdit
 
-### 4.9.1/2
+### 4.9.1/2/3
 - feat:修改模块加载逻辑为ES2020
 - feat:antdConfig等配置项更改为reactive对象
 
