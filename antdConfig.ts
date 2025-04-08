@@ -1,4 +1,4 @@
-import { h } from "vue"
+import { h, reactive } from "vue"
 import { Button } from "ant-design-vue"
 import { ButtonType } from "ant-design-vue/es/button"
 import { getType, camelToLine, downloadFile, parseColor } from "complex-utils"
@@ -42,7 +42,7 @@ export class LayoutLifeData {
   }
 }
 
-const antdConfig = {
+const antdConfig = reactive({
   componentConfig: componentConfig,
   dataConfig: dataConfig,
   pluginLayout: null as null | PluginLayout,
@@ -358,7 +358,7 @@ const antdConfig = {
       }
     }
   }
-}
+})
 
 
 export default antdConfig

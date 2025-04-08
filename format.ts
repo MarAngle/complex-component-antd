@@ -1,3 +1,4 @@
+import { reactive } from 'vue'
 import dayjs, { Dayjs } from 'dayjs'
 import { AttrsValue } from "complex-data"
 import { AttrsValueInitOption } from 'complex-data/src/lib/AttrsValue'
@@ -68,7 +69,7 @@ const bindEvent = function(dictItem: dictItemType, itemAttrs: AttrsValue, edit: 
   }
 }
 
-const dict = {
+const dict = reactive({
   $input: {
     init: modelFuncDict.valueInit,
     on: {
@@ -392,7 +393,7 @@ const dict = {
       return itemAttrs
     }
   }
-}
+})
 
 export const parseEditAttrs = function (edit: DictionaryEditMod, payload: AutoItemPayloadType<'edit'>) {
   if (edit.type === 'input') {

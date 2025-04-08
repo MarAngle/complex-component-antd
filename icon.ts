@@ -1,4 +1,4 @@
-import { Component, VNode, h } from 'vue'
+import { Component, VNode, h, reactive } from 'vue'
 import { SearchOutlined, SettingOutlined, PlusOutlined, DeleteOutlined, ContainerOutlined, EditOutlined, ReloadOutlined, SyncOutlined, CloseOutlined, StopOutlined, DownloadOutlined, UploadOutlined, LinkOutlined, DownOutlined, UpOutlined } from '@ant-design/icons-vue'
 import { MenuValue } from 'complex-data/type'
 import EmptyImage from "./src/icons/EmptyImage.vue"
@@ -9,7 +9,7 @@ export interface localIconProps {
   color?: string
 }
 
-export const iconDict: Record<string, (props?: Record<PropertyKey, any>) => VNode> = {
+export const iconDict: Record<string, (props?: Record<PropertyKey, any>) => VNode> = reactive({
   search: (props) => h(SearchOutlined, props),
   setting: (props) => h(SettingOutlined, props),
   build: (props) => h(PlusOutlined, props),
@@ -25,14 +25,14 @@ export const iconDict: Record<string, (props?: Record<PropertyKey, any>) => VNod
   link: (props) => h(LinkOutlined, props),
   down: (props) => h(DownOutlined, props),
   up: (props) => h(UpOutlined, props)
-}
+})
 
-export const localIconDict: Record<string, Component> = {
+export const localIconDict: Record<string, Component> = reactive({
   emptyImage: EmptyImage,
   errorImage: ErrorImage
-}
+})
 
-const icon = {
+const icon = reactive({
   parse(name: MenuValue['icon']) {
     if (name) {
       if (typeof name === 'string') {
@@ -63,7 +63,7 @@ const icon = {
       return undefined
     }
   }
-}
+})
 
 export default icon
 
