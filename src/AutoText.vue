@@ -18,7 +18,7 @@
 </style>
 <template>
   <Tooltip v-bind="tipOption" >
-    <p ref="mainRef" class="complex-auto-text" :class="{ 'complex-auto-text-auto': auto, 'complex-auto-text-is-auto': isEllipsis }" >
+    <p v-bind="$attrs" ref="mainRef" class="complex-auto-text" :class="{ 'complex-auto-text-auto': auto, 'complex-auto-text-is-auto': isEllipsis }" >
       <span ref="sizeRef" >{{ text }}</span>
     </p>
   </Tooltip>
