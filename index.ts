@@ -13,6 +13,10 @@ import EditArea from "./src/EditArea"
 import SearchArea from "./src/SearchArea"
 import ImageViewer from "./src/ImageViewer"
 import FlexBox from "./src/FlexBox"
+import AutoRender from "./src/components/AutoRender"
+import ChoiceInfo from "./src/components/ChoiceInfo.vue"
+import PaginationView from "./src/components/PaginationView"
+import TableMenu from "./src/components/TableMenu"
 import QuickList from "./quick/QuickList"
 import QuickCascade from "./quick/QuickCascade"
 import QuickEdit from "./quick/QuickEdit"
@@ -35,6 +39,10 @@ export const ComplexEditArea = EditArea
 export const ComplexSearchArea = SearchArea
 export const ComplexImageViewer = ImageViewer
 export const ComplexFlexBox = FlexBox
+export const ComplexAutoRender = AutoRender
+export const ComplexChoiceInfo = ChoiceInfo
+export const ComplexPaginationView = PaginationView
+export const ComplexTableMenu = TableMenu
 export const ComplexQuickList = QuickList
 export const ComplexQuickCascade = QuickCascade
 export const ComplexQuickEdit = QuickEdit

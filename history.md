@@ -12,6 +12,9 @@
 ### Doing
 - 简化SimpleTable，可自定义组件，通过此组件实现ListEdit
 
+### 4.9.5
+- feat:输出AutoRender,ChoiceInfo,PaginationView,TableMenu模板组件
+
 ### 4.9.4
 - fit:修正AutoText未正确接收attrs的BUG
 
