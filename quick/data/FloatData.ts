@@ -58,8 +58,10 @@ class FloatData extends Data {
   }
   close(floatValue: FloatValue, _from: string) {
     const index = this.list.indexOf(floatValue)
-    this.list.splice(index, 1)
-    floatValue.close()
+    if (index > -1) {
+      this.list.splice(index, 1)
+      floatValue.close()
+    }
     return index
   }
   replace(floatValue: FloatValue, floatValueInitOption?: Partial<FloatValueInitOption>, show?: boolean) {

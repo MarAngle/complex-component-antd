@@ -70,7 +70,7 @@ class LayoutResizeObserver {
 
   disconnect() {
     this.targetElements.clear()
-    LayoutResizeObserver.life.off('resize', this.lifeId)
+    LayoutResizeObserver.life.off('mainChange', this.lifeId)
     this.lifeId = ''
   }
 

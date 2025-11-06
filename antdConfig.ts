@@ -120,20 +120,20 @@ const antdConfig = reactive({
     }
     rootInnerHTML += "\n}"
     // 设置样式规则
-    if (!this.style.element) {
-      this.style.element = document.createElement('style')
-      this.style.element.innerHTML =rootInnerHTML + styleInnerHTML
+    if (!antdConfig.style.element) {
+      antdConfig.style.element = document.createElement('style')
+      antdConfig.style.element.innerHTML =rootInnerHTML + styleInnerHTML
       // 将样式元素节点添加到页面头部
-      document.head.appendChild(this.style.element)
+      document.head.appendChild(antdConfig.style.element)
     } else {
-      this.style.element.innerHTML =rootInnerHTML + styleInnerHTML
+      antdConfig.style.element.innerHTML =rootInnerHTML + styleInnerHTML
     }
   },
   parseGrid(gridValue: GridValue) {
     return gridValue
   },
   showValue(value: unknown): string | number | undefined {
-    if (['object', 'array'].indexOf(getType(value)) === -1) {
+    if (!['object', 'array'].includes(getType(value))) {
       return value as string | number | undefined
     } else {
       return (value as Record<PropertyKey, any> | any[]).toString()

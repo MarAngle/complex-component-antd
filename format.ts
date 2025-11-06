@@ -57,7 +57,7 @@ const bindEvent = function(dictItem: dictItemType, itemAttrs: AttrsValue, edit: 
   // 加载双向绑定逻辑
   for (const funcName in onData) {
     itemAttrs.pushEvent(funcName, (...args) => {
-      onData[funcName as 'input' | 'change' | 'select']!(formData, edit.$prop, args)
+      onData[funcName](formData, edit.$prop, args)
     }, 'before')
   }
   // 加载单独设置的事件监控
@@ -184,7 +184,7 @@ const dict = reactive({
         props: {
           mode: edit.multiple ? 'multiple' : 'default',
           options: !edit.$filter ? edit.$select.getList() : edit.$filter(edit.$select, payload.list),
-          open: (edit.$option as any).open,
+          open: (edit.$option as { open?: boolean }).open,
           showSearch: !!search,
           searchValue: search?.value,
           showArrow: !edit.$option.hideArrow,

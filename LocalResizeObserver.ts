@@ -32,7 +32,9 @@ class LocalResizeObserver {
   unobserve(target: Element) {
     this.observer.unobserve(target)
     const index = this.targetElements.indexOf(target)
-    this.targetElements.splice(index, 1)
+    if (index > -1) {
+      this.targetElements.splice(index, 1)
+    }
   }
   disconnect() {
     this.observer.disconnect()
