@@ -125,7 +125,7 @@ export default defineComponent({
     },
     currentIdList() {
       return this.currentData.map(item => {
-        return item[this.listData!.getDictionaryProp('id')]
+        return item[this.listData!.getDictionaryProp('id')!]
       })
     },
     currentAuto() {
@@ -143,7 +143,7 @@ export default defineComponent({
     },
     currentColumnList() {
       const list = []
-      const columnList = this.columnList || this.listData!.getDictionaryPageList(this.listProp, this.listData!.getDictionaryList(this.listProp)) as DefaultList[]
+      const columnList = this.columnList || this.listData!.getDictionaryPageList(this.listProp, this.listData!.getDictionaryList(this.listProp)!) as DefaultList[]
       for (let i = 0; i < columnList.length; i++) {
         const column = columnList[i]
         const currentProp = column.$prop

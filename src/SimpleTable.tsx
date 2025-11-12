@@ -68,7 +68,7 @@ export default defineComponent({
     },
     currentIdList() {
       return this.currentData.map(item => {
-        return item[this.listData!.getDictionaryProp('id')]
+        return item[this.listData!.getDictionaryProp('id')!]
       })
     },
     currentAuto() {
@@ -82,7 +82,7 @@ export default defineComponent({
       }
     },
     currentColumnList() {
-      return this.columnList || this.listData!.getDictionaryPageList(this.listProp, this.listData!.getDictionaryList(this.listProp)) as DefaultList[]
+      return this.columnList || this.listData!.getDictionaryPageList(this.listProp, this.listData!.getDictionaryList(this.listProp)!) as DefaultList[]
     },
     isEmpty() {
       return !this.currentData || this.currentData.length === 0

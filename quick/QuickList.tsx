@@ -363,6 +363,7 @@ export default defineComponent({
       (this.$refs['info-modal'] as InstanceType<typeof QuickFloatModal>).show([type, record], name)
     },
     openEdit(record?: Record<PropertyKey, any>, build?: boolean) {
+      console.log(record, build)
       const isBuild = !record || build
       const type = isBuild ? 'build' : 'change'
       let name = isBuild ? '新增' : '编辑'
