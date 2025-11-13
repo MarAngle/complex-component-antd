@@ -362,21 +362,23 @@ export default defineComponent({
       }
       (this.$refs['info-modal'] as InstanceType<typeof QuickFloatModal>).show([type, record], name)
     },
-    openEdit(record?: Record<PropertyKey, any>, build?: boolean) {
-      console.log(record, build)
-      const isBuild = !record || build
-      const type = isBuild ? 'build' : 'change'
-      let name = isBuild ? '新增' : '编辑'
-      if (this.currentComponentsProps.editModal?.formatName) {
-        name = this.currentComponentsProps.editModal.formatName(name, type)
-      }
-      if (!isBuild) {
+    startEdit(type: string, name: string, record?: Record<PropertyKey, any>, refresh?: boolean) {
+      if (record && refresh) {
         this.refreshData(record, (record) => {
           this.showEdit(name, type, record)
         })
       } else {
         this.showEdit(name, type, record)
       }
+    },
+    openEdit(record?: Record<PropertyKey, any>, build?: boolean) {
+      const isBuild = !record || build
+      const type = isBuild ? 'build' : 'change'
+      let name = isBuild ? '新增' : '编辑'
+      if (this.currentComponentsProps.editModal?.formatName) {
+        name = this.currentComponentsProps.editModal.formatName(name, type)
+      }
+      this.startEdit(type, name, record, !isBuild)
     },
     showEdit(name: string, type: string, record?: Record<PropertyKey, any>) {
       (this.$refs['edit-modal'] as InstanceType<typeof QuickFloatModal>).show([type, record], name)
@@ -399,7 +401,7 @@ export default defineComponent({
     $onEditSubmit(res: EditAreaSubmitOption) {
       let promise
       if (res.type === 'build') {
-        promise = this.listData.triggerMethod('buildData', [res.targetData, res.type], {
+        promise = this.listData.triggerMethod('buildData', [res.targetData, res.type, res.originData], {
           strict: true,
           debounce: this.editDebounce
         })

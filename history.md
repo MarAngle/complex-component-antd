@@ -12,6 +12,10 @@
 ### Doing
 - 简化SimpleTable，可自定义组件，通过此组件实现ListEdit
 
+### `4.10.3`
+- feat: 重构 `QuickList` 的编辑逻辑，新增 `startEdit` 函数以提高灵活性和可扩展性。
+- feat: 为 `QuickList` 的 `buildData` 方法调用增加 `originData` 参数，支持基于模板创建数据。
+
 ### `4.10.1` `4.10.2`
 - feat: 搭建测试流程
 
