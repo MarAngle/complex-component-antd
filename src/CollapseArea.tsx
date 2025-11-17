@@ -1,6 +1,6 @@
 import { defineComponent, h, nextTick, onBeforeMount, onMounted, PropType, ref, VNode } from "vue"
+import { dataConfig } from "complex-data"
 import LocalResizeObserver from "../LocalResizeObserver"
-import antdConfig from "../antdConfig"
 
 export interface CollapseAreaProps {
   height: number
@@ -79,7 +79,7 @@ export default defineComponent({
     return h('div', {
       class: 'complex-collapse-area' + ((this.collapse && this.needCollapse) ? ' complex-collapse-area-collapsed' : ''),
       style: {
-        height: (this.collapse && this.needCollapse) ? antdConfig.dataConfig.formatPixel(this.height) : undefined
+        height: (this.collapse && this.needCollapse) ? dataConfig.formatPixel(this.height) : undefined
       }
     }, [
       this.renderArea()

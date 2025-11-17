@@ -1,5 +1,5 @@
 import { PropType, defineComponent, h } from 'vue'
-import antdConfig from "../antdConfig"
+import { dataConfig } from "complex-data"
 
 const paddingPropList = ['paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft'] as const
 
@@ -56,13 +56,13 @@ export default defineComponent({
       }
     }
     const style = {
-      width: antdConfig.dataConfig.formatPixel(this.width),
-      height: antdConfig.dataConfig.formatPixel(this.height)
+      width: dataConfig.formatPixel(this.width),
+      height: dataConfig.formatPixel(this.height)
     } as Record<string, string>
     paddingPropList.forEach(paddingProp => {
       const paddingValue = this[paddingProp]
       if (paddingValue) {
-        style[paddingProp] = antdConfig.dataConfig.formatPixel(paddingValue)
+        style[paddingProp] = dataConfig.formatPixel(paddingValue)
       }
     })
     const render = h('div', {

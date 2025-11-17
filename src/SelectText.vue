@@ -4,8 +4,8 @@
 
 <script lang="ts">
 import { PropType, defineComponent } from "vue"
+import { dataConfig } from "complex-data"
 import { SelectValueType } from "complex-data/src/lib/SelectValue"
-import antdConfig from "../antdConfig"
 
 export default defineComponent({
   name: 'SelectText',
@@ -43,7 +43,7 @@ export default defineComponent({
     style() {
       if (this.value && this.color) {
         return {
-          color: this.disabled ? antdConfig.dataConfig.style.color.disabled : this.value.$color ? antdConfig.dataConfig.style.color[this.value.$color] : this.value.color ? this.value.color : this.value.disabled ? antdConfig.dataConfig.style.color.disabled : undefined
+          color: this.disabled ? dataConfig.style.color.disabled : this.value.$color ? dataConfig.style.color[this.value.$color] : this.value.color ? this.value.color : this.value.disabled ? dataConfig.style.color.disabled : undefined
         }
       }
     }

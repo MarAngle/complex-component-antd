@@ -1,6 +1,7 @@
 import { defineComponent, h, markRaw, PropType } from "vue"
 import { Modal, ModalProps } from "ant-design-vue"
 import { deepCloneData, updateData } from "complex-utils"
+import { dataConfig } from "complex-data"
 import { MenuValue } from "complex-data/type"
 import ButtonView from "./ButtonView"
 import antdConfig from "../antdConfig"
@@ -217,8 +218,8 @@ export default defineComponent({
     }
   },
   render() {
-    const top = antdConfig.dataConfig.formatPixel(this.currentLayout.top)
-    const padding = this.currentLayout.padding.map(num => antdConfig.dataConfig.formatPixel(num)).join(' ')
+    const top = dataConfig.formatPixel(this.currentLayout.top)
+    const padding = this.currentLayout.padding.map(num => dataConfig.formatPixel(num)).join(' ')
     interface ModalPropsWithClass extends ModalProps {
       class: string
     }

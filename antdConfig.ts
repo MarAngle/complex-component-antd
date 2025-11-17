@@ -99,11 +99,11 @@ const antdConfig = reactive({
   initStyle() {
     let rootInnerHTML = ":root{"
     let styleInnerHTML = ""
-    for (const name in antdConfig.dataConfig.style.color) {
+    for (const name in dataConfig.style.color) {
       const styleName = camelToLine(name, '-')
       const styleProp = 'complex-color-' + styleName
       const styleVarProp = '--' + styleProp
-      const styleValue = antdConfig.dataConfig.style.color[name]
+      const styleValue = dataConfig.style.color[name]
       const rgba = parseColor(styleValue)
       const rgbStr = `${rgba?.r},${rgba?.g},${rgba?.b}`
       rootInnerHTML += `\n${styleVarProp}-rgb:${rgbStr};`
@@ -112,10 +112,10 @@ const antdConfig = reactive({
       styleInnerHTML += `\n.${styleProp}{color:var(${styleVarProp});}`
       styleInnerHTML += `\n.complex-bg-color-${styleName}{background-color:var(${styleVarProp});}`
     }
-    antdConfig.dataConfig.style.data.animateTime = componentConfig.animateTime
-    for (const name in antdConfig.dataConfig.style.data) {
+    dataConfig.style.data.animateTime = componentConfig.animateTime
+    for (const name in dataConfig.style.data) {
       const styleVarProp = '--complex-style-' + camelToLine(name, '-')
-      const styleValue = antdConfig.dataConfig.style.data[name]
+      const styleValue = dataConfig.style.data[name]
       rootInnerHTML += `\n${styleVarProp}:${styleValue};`
     }
     rootInnerHTML += "\n}"

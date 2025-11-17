@@ -1,5 +1,5 @@
 import { defineComponent, h, PropType } from "vue"
-import { AttrsValue, ButtonEdit, ButtonGroupEdit, ContentEdit } from "complex-data"
+import { AttrsValue, ButtonEdit, ButtonGroupEdit, ContentEdit, dataConfig } from "complex-data"
 import DictionaryValue from "complex-data/src/lib/DictionaryValue"
 import ObserveList from "complex-data/src/dictionary/ObserveList"
 import { ButtonEditOption } from "complex-data/src/dictionary/ButtonEdit"
@@ -43,7 +43,7 @@ export default defineComponent({
     } else {
       const targetAttrs = antdConfig.componentConfig.parseData(this.payload.target.$local, 'target') || new AttrsValue()
       if (!(this.payload.parent as InstanceType<typeof InfoView>).gridParse && this.payload.target.$width) {
-        targetAttrs.style.width = typeof this.payload.target.$width === 'number' ? antdConfig.dataConfig.formatPixel(this.payload.target.$width) : this.payload.target.$width
+        targetAttrs.style.width = typeof this.payload.target.$width === 'number' ? dataConfig.formatPixel(this.payload.target.$width) : this.payload.target.$width
       }
       if (this.payload.target instanceof ButtonEdit) {
         const option = {

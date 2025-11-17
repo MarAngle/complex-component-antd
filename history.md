@@ -12,8 +12,9 @@
 ### Doing
 - 简化SimpleTable，可自定义组件，通过此组件实现ListEdit
 
-### `4.10.4`
-- refactor: 移动 localIconProps 类型定义到 type.ts，解决循环依赖问题。
+### `4.10.4` `4.10.5`
+- refactor: 迁移 `localIconProps` 类型定义至 `type.ts` 文件，解决循环依赖。
+- refactor: 调整 `dataConfig` 的导入方式，由 `antdConfig.dataConfig` 改为直接导入，解决循环依赖。
 
 ### `4.10.3`
 - feat: 重构 `QuickList` 的编辑逻辑，新增 `startEdit` 函数以提高灵活性和可扩展性。

@@ -1,7 +1,7 @@
 import { defineComponent, h, PropType, VNode } from "vue"
 import { Empty } from "ant-design-vue"
 import { deepCloneData, updateData } from "complex-utils"
-import { DefaultInfo } from "complex-data"
+import { DefaultInfo, dataConfig } from "complex-data"
 import DefaultList from "complex-data/src/dictionary/DefaultList"
 import PaginationView from "./components/PaginationView"
 import TableMenu from "./components/TableMenu"
@@ -92,7 +92,7 @@ export default defineComponent({
     rowWidth(column: DefaultList | DefaultInfo) {
       if (column.$width) {
         return {
-          width: typeof column.$width === 'number' ? antdConfig.dataConfig.formatPixel(column.$width) : column.$width
+          width: typeof column.$width === 'number' ? dataConfig.formatPixel(column.$width) : column.$width
         }
       } else {
         return undefined
@@ -138,7 +138,7 @@ export default defineComponent({
       } else {
         return h('div', {
           style: {
-            height: antdConfig.dataConfig.formatPixel(this.lineHeight)
+            height: dataConfig.formatPixel(this.lineHeight)
           }
         }, content)
       }

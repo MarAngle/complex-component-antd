@@ -1,6 +1,7 @@
 import { defineComponent, h, PropType, VNode } from "vue"
 import { Input, InputNumber, Textarea, Switch, Select, Divider, Cascader, DatePicker, RangePicker } from "ant-design-vue"
 import { camelToLine } from "complex-utils"
+import { dataConfig } from "complex-data"
 import { DictionaryEditMod } from "complex-data/src/lib/DictionaryValue"
 import PaginationView from "./../components/PaginationView"
 import { AutoItemPayloadType } from "./AutoItem"
@@ -34,7 +35,7 @@ export default defineComponent({
     targetAttrs.merge(antdConfig.componentConfig.parseData(target.$local, 'target'))
     let item = null
     if (!(this.payload.parent as InstanceType<typeof EditView>).gridParse && target.$width) {
-      targetAttrs.style.width = typeof target.$width === 'number' ? antdConfig.dataConfig.formatPixel(target.$width) : target.$width
+      targetAttrs.style.width = typeof target.$width === 'number' ? dataConfig.formatPixel(target.$width) : target.$width
     }
     const targetRender = antdConfig.componentConfig.parseData(target.$renders, 'target')
     const option = antdConfig.componentConfig.parseAttrs(targetAttrs)

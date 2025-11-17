@@ -7,8 +7,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue"
+import { dataConfig } from "complex-data"
 import { localIconProps } from "../../type"
-import antdConfig from "../../antdConfig"
 
 export default defineComponent({
   name: 'EmptyImage',
@@ -22,7 +22,7 @@ export default defineComponent({
       type: String as PropType<localIconProps['color']>,
       required: false,
       default: () => {
-        return antdConfig.dataConfig.style.color.disabled
+        return dataConfig.style.color.disabled
       }
     }
   }
