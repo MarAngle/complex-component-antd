@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue"
-import { localIconProps } from "../../icon"
+import { localIconProps } from "../../type"
 import antdConfig from "../../antdConfig"
 
 export default defineComponent({

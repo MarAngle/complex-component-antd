@@ -3,11 +3,7 @@ import { SearchOutlined, SettingOutlined, PlusOutlined, DeleteOutlined, Containe
 import { MenuValue } from 'complex-data/type'
 import EmptyImage from "./src/icons/EmptyImage.vue"
 import ErrorImage from "./src/icons/ErrorImage.vue"
-
-export interface localIconProps {
-  size?: number
-  color?: string
-}
+import { localIconProps } from './type'
 
 export const iconDict: Record<string, (props?: Record<PropertyKey, any>) => VNode> = reactive({
   search: (props) => h(SearchOutlined, props),
