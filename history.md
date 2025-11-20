@@ -8,9 +8,13 @@
 - SimpleTable的插槽和菜单逻辑同步
 - Import的complex属性适配，接收一个复杂对象实现，具体的名称和URL解析考虑单独参数或者额外包装
 - 统一的布局切换逻辑实现方案
+- - quick优化，参数优化配置细分
 
 ### Doing
 - 简化SimpleTable，可自定义组件，通过此组件实现ListEdit
+
+### `4.10.6`
+- feat: 修正cascader级联选择器未适配filter的BUG。
 
 ### `4.10.4` `4.10.5`
 - refactor: 迁移 `localIconProps` 类型定义至 `type.ts` 文件，解决循环依赖。

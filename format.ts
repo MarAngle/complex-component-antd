@@ -210,7 +210,7 @@ const dict = reactive({
       const isLoading = edit.$load ? edit.getLoad() === StatusValue.ing : false
       const itemAttrs = new AttrsValue({
         props: {
-          options: edit.$select.getCascaderList(),
+          options: !edit.$filter ? edit.$select.getCascaderList() : edit.$filter(edit.$select, payload.list),
           showArrow: !edit.$option.hideArrow,
           allowClear: !edit.$option.hideClear,
           disabled: payload.disabled || isLoading,
