@@ -13,7 +13,7 @@
 ### Doing
 - 简化SimpleTable，可自定义组件，通过此组件实现ListEdit
 
-### `4.10.6`
+### `4.10.6` `4.10.7`
 - feat: 修正cascader级联选择器未适配filter的BUG。
 
 ### `4.10.4` `4.10.5`
