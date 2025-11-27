@@ -13,6 +13,9 @@
 ### Doing
 - 简化SimpleTable，可自定义组件，通过此组件实现ListEdit
 
+### `4.10.8`
+- feat: MenuView和TableMenu适配MenuValue的事件修饰符。
+
 ### `4.10.6` `4.10.7`
 - feat: 修正cascader级联选择器未适配filter的BUG。
 

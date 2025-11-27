@@ -42,7 +42,15 @@ export default defineComponent({
         danger: type === 'danger',
         icon: icon.parse(this.data.icon),
         disabled: disabled,
-        onClick: (e: Event) => {
+        onClick: (e: MouseEvent) => {
+          if (this.data.modifiers) {
+            if (this.data.modifiers.includes('.stop')) {
+              e.stopPropagation()
+            }
+            if (this.data.modifiers.includes('.prevent')) {
+              e.preventDefault()
+            }
+          }
           antdConfig.parseMenuConfirm(this.data.confirm, () => {
             this.$emit('click', e)
             if (this.data.click) {

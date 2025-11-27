@@ -53,7 +53,15 @@ export default defineComponent({
           classList = classList.concat(typeof menuItem.class === "function" ? menuItem.class(payload) : menuItem.class)
         }
 
-        const onClick = () => {
+        const onClick = (e: MouseEvent) => {
+          if (menuItem.modifiers) {
+            if (menuItem.modifiers.includes('.stop')) {
+              e.stopPropagation()
+            }
+            if (menuItem.modifiers.includes('.prevent')) {
+              e.preventDefault()
+            }
+          }
           antdConfig.parseMenuConfirm(menuItem.confirm, () => {
             this.$emit("menu", menuItem.prop, payload);
           })
