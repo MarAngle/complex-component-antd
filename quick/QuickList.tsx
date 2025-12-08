@@ -383,11 +383,11 @@ export default defineComponent({
     showEdit(name: string, type: string, record?: Record<PropertyKey, any>) {
       (this.$refs['edit-modal'] as InstanceType<typeof QuickFloatModal>).show([type, record], name)
     },
-    onEditSubmit() {
+    onEditSubmit(...args: any[]) {
       const promise = new Promise((resolve, reject) => {
         const editPromise = ((this.$refs['edit-modal'] as InstanceType<typeof QuickFloatModal>).getContent() as InstanceType<typeof EditArea>).$submit()
         editPromise.then(res => {
-          this.$onEditSubmit(res).then(() => {
+          this.$onEditSubmit(res, ...args).then(() => {
             resolve(res)
           }).catch((err: unknown) => {
             reject(err)
@@ -398,20 +398,20 @@ export default defineComponent({
       })
       return promise
     },
-    $onEditSubmit(res: EditAreaSubmitOption) {
+    $onEditSubmit(res: EditAreaSubmitOption, ...args: any[]) {
       let promise
       if (res.type === 'build') {
-        promise = this.listData.triggerMethod('buildData', [res.targetData, res.type, res.originData], {
+        promise = this.listData.triggerMethod('buildData', [res.targetData, res.type, res.originData, ...args], {
           strict: true,
           debounce: this.editDebounce
         })
       } else if (res.type === 'change') {
-        promise = this.listData.triggerMethod('changeData', [res.targetData, res.originData, res.type], {
+        promise = this.listData.triggerMethod('changeData', [res.targetData, res.originData, res.type, ...args], {
           strict: true,
           debounce: this.editDebounce
         })
       } else {
-        promise = this.listData.triggerMethod('editData', [res.targetData, res.originData, res.type], {
+        promise = this.listData.triggerMethod('editData', [res.targetData, res.originData, res.type, ...args], {
           strict: true,
           debounce: this.editDebounce
         })

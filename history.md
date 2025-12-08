@@ -13,6 +13,9 @@
 ### Doing
 - 简化SimpleTable，可自定义组件，通过此组件实现ListEdit
 
+### `4.10.9`
+- feat: `QuickList` 的 `onEditSubmit` 函数添加自定义传参供外部特殊调用使用。
+
 ### `4.10.8`
 - feat: MenuView和TableMenu适配MenuValue的事件修饰符。
 
