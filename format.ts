@@ -1,5 +1,7 @@
 import { reactive } from 'vue'
 import dayjs, { Dayjs } from 'dayjs'
+import { isArray } from 'complex-utils'
+import { notice } from 'complex-plugin'
 import { AttrsValue } from "complex-data"
 import { AttrsValueInitOption } from 'complex-data/src/lib/AttrsValue'
 import { StatusValue } from 'complex-data/src/module/StatusData'
@@ -238,10 +240,15 @@ const dict = reactive({
           format: edit.$option.showFormat,
           allowClear: !edit.$option.hideClear,
           showTime: showTime,
-          defaultPickerValue: dayjs('00:00:00', 'HH:mm:ss'),
-          disabledDate: edit.$option.disabledDate
+          defaultPickerValue: dayjs('00:00:00', 'HH:mm:ss')
         }
       })
+      const complexDisabledDate = edit.$option.complexDisabledDate
+      if (edit.$option.disabledDate) {
+        itemAttrs.props.disabledDate = !complexDisabledDate ? edit.$option.disabledDate : function(value: any) {
+          return edit.$option.disabledDate!(value, payload)
+        }
+      }
       bindEvent(this as dictItemType, itemAttrs, edit, payload)
       return itemAttrs
     }
@@ -263,29 +270,66 @@ const dict = reactive({
           format: edit.$option.showFormat,
           allowClear: !edit.$option.hideClear,
           separator: edit.$option.separator,
-          showTime: showTime,
-          disabledDate: edit.$option.disabledDate
+          showTime: showTime
         }
       })
+      const complexDisabledDate = edit.$option.complexDisabledDate || !!edit.$option.rangeLimit
+      if (edit.$option.disabledDate) {
+        itemAttrs.props.disabledDate = !complexDisabledDate ? edit.$option.disabledDate : function(value: any) {
+          return edit.$option.disabledDate!(value, payload, edit.$option.rangeLimit)
+        }
+      }
       bindEvent(this as dictItemType, itemAttrs, edit, payload)
       if (edit.$option.rangeLimit) {
-        itemAttrs.pushEvent('calendarChange', function(dates: [Dayjs, Dayjs] | [string, string], dateStrings: [string, string], info: { range: 'start' | 'end' }, _payload: AutoItemPayloadType<'edit'>) {
-          if (dates && dates[0] && dates[1]) {
-            // 获取结束时间距离开始时间的时间间隔，毫秒
-            const offset = SimpleDateEdit.$compareDate(dates[0], dates[1])
-            const rangeLimit = edit.$option.rangeLimit! * 1000
-            if (offset > rangeLimit) {
-              // 当大于限制值时
-              if (info.range === 'start') {
-                dates.splice(0, 1)
-                dateStrings.splice(0, 1)
-              } else if (info.range === 'end') {
-                dates.splice(1, 1)
-                dateStrings.splice(1, 1)
+        itemAttrs.pushEvent('calendarChange', function(value: undefined | [null | Dayjs, null | Dayjs], dateStrings: [string, string], info: { range: 'start' | 'end' }) {
+          if (edit.$option.rangeLimit) {
+            if (value) {
+              if (value[0] && value[1]) {
+                // 限制模式下且存在值时进行值有效判断
+                const offset = Math.abs(SimpleDateEdit.$compareDate(value[0], value[1]))
+                const rangeLimitValue = edit.$option.rangeLimit.value * 1000
+                if (!edit.$option.rangeLimit.eq ? offset >= rangeLimitValue : offset > rangeLimitValue) {
+                  // 当大于限制值时
+                  if (info.range === 'start') {
+                    value[1] = null
+                    dateStrings[1] = ''
+                    if (edit.$option.rangeLimit.message) {
+                      const message = edit.$option.rangeLimit.message(offset, payload)
+                      if (message) {
+                        notice.message(message, 'warn')
+                      }
+                    }
+                  } else if (info.range === 'end') {
+                    value[0] = null
+                    dateStrings[0] = ''
+                    if (edit.$option.rangeLimit.message) {
+                      const message = edit.$option.rangeLimit.message(offset, payload)
+                      if (message) {
+                        notice.message(message, 'warn')
+                      }
+                    }
+                  }
+                }
               }
+              // 限制模式下缓存值
+              payload.targetData[payload.prop] = value
             }
           }
         }, 'before')
+        itemAttrs.pushEvent('openChange', function(status: boolean) {
+          if (edit.$option.rangeLimit) {
+            if(!status) {
+              // 关闭时
+              const value = payload.targetData[payload.prop] as undefined | [null | Dayjs, null | Dayjs]
+              if (value && isArray(value)) {
+                if (!!value[0] !== !!value[1]) {
+                  // 有且仅有1个存在值
+                  payload.targetData[payload.prop] = undefined
+                }
+              }
+            }
+          }
+        }, 'after')
       }
       return itemAttrs
     }

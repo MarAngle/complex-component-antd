@@ -78,9 +78,7 @@ const plugin = {
     }
   
     SimpleDateEdit.$compareDate = function(target, other) {
-      const otherTime = (other as Dayjs).valueOf()
-      const targetTime = (target as Dayjs).valueOf()
-      return otherTime - targetTime
+      return (other as Dayjs).valueOf() - (target as Dayjs).valueOf()
     }
   
     SimpleDateEdit.$parse = function(value, format) {

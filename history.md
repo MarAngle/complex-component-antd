@@ -13,6 +13,9 @@
 ### Doing
 - 简化SimpleTable，可自定义组件，通过此组件实现ListEdit
 
+### `4.10.10`
+- feat: 适配`Date`相关的`complexDisabledDate` `rangeLimit`配置项，实现复杂日期禁止函数和时间范围限制相关功能。
+
 ### `4.10.9`
 - feat: `QuickList` 的 `onEditSubmit` 函数添加自定义传参供外部特殊调用使用。
 
