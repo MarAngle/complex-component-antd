@@ -4,6 +4,7 @@ import ModalView, { ModalViewSlotProps } from "./../src/ModalView"
 import icon from "../icon"
 
 export const contentRef = 'content'
+export const modalRef = 'modal'
 
 export default defineComponent({
   name: 'QuickFloatValue',
@@ -44,8 +45,11 @@ export default defineComponent({
     getContent() {
       return this.$refs[contentRef]
     },
+    getModal() {
+      return this.$refs[modalRef] as InstanceType<typeof ModalView>
+    },
     show() {
-      (this.$refs.modal as InstanceType<typeof ModalView>).show()
+      this.getModal().show()
       if (!this.floatValue.init) {
         this.floatValue.init = true
         this.$nextTick(() => {
@@ -56,7 +60,7 @@ export default defineComponent({
       }
     },
     close(from = 'float') {
-      (this.$refs.modal as InstanceType<typeof ModalView>).close(from)
+      this.getModal().close(from)
     },
     renderContent() {
       if (!this.floatValue.init && !this.floatValue.show) {
@@ -65,7 +69,7 @@ export default defineComponent({
       }
       return h(ModalView, {
         class: 'complex-quick-float-item-modal',
-        ref: 'modal',
+        ref: modalRef,
         onClose: (from: string) => {
           this.$emit('close', this.floatValue, from)
         },

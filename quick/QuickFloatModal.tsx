@@ -45,6 +45,9 @@ export default defineComponent({
     getContent() {
       return !this.float ? this.$refs[contentRef] : this.floatValue?.target?.getContent()
     },
+    getModal() {
+      return !this.float ? (this.$refs.modal as InstanceType<typeof ModalView>) : this.floatValue?.target?.getModal()
+    },
     show(args: any[], title?: string, option?: ModalProps) {
       if (!this.float) {
         (this.$refs.modal as InstanceType<typeof ModalView>).show(title, option)

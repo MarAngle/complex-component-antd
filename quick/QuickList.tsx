@@ -384,8 +384,9 @@ export default defineComponent({
       (this.$refs['edit-modal'] as InstanceType<typeof QuickFloatModal>).show([type, record], name)
     },
     onEditSubmit(...args: any[]) {
+      const floatModal = (this.$refs['edit-modal'] as InstanceType<typeof QuickFloatModal>)
       const promise = new Promise((resolve, reject) => {
-        const editPromise = ((this.$refs['edit-modal'] as InstanceType<typeof QuickFloatModal>).getContent() as InstanceType<typeof EditArea>).$submit()
+        const editPromise = (floatModal.getContent() as InstanceType<typeof EditArea>).$submit()
         editPromise.then(res => {
           this.$onEditSubmit(res, ...args).then(() => {
             resolve(res)
@@ -395,6 +396,9 @@ export default defineComponent({
         }).catch((err: unknown) => {
           reject(err)
         })
+      })
+      promise.then(() => {
+        floatModal.getModal()?.close('submit')
       })
       return promise
     },
