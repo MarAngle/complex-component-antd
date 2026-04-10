@@ -13,6 +13,9 @@
 ### Doing
 - 简化SimpleTable，可自定义组件，通过此组件实现ListEdit
 
+### `4.10.12`
+- refactor: 将TypeScript类型导入语法升级为type关键字形式。
+
 ### `4.10.11`
 - fix: 修正`QuickList`的`onEditSubmit`未自动关闭编辑弹窗的问题，并在浮动弹窗相关组件添加获取弹窗实例的函数。
 

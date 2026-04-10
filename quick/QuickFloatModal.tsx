@@ -1,7 +1,9 @@
 import { defineComponent, h, PropType } from "vue"
-import { ModalProps } from "ant-design-vue"
-import ModalView, { ModalViewSlotProps } from "../src/ModalView"
-import FloatData, { FloatValue } from "./data/FloatData"
+import type { ModalProps } from "ant-design-vue"
+import ModalView from "../src/ModalView"
+import type { ModalViewSlotProps } from "../src/ModalView"
+import FloatData from "./data/FloatData"
+import type { FloatValue } from "./data/FloatData"
 import { contentRef } from "./QuickFloatValue"
 
 export interface QuickFloatModalProps {

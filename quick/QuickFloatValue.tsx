@@ -1,6 +1,7 @@
 import { defineComponent, h, PropType, markRaw } from "vue"
 import { FloatValue } from "./data/FloatData"
-import ModalView, { ModalViewSlotProps } from "./../src/ModalView"
+import ModalView from "./../src/ModalView"
+import type { ModalViewSlotProps } from "./../src/ModalView"
 import icon from "../icon"
 
 export const contentRef = 'content'

@@ -2,9 +2,10 @@ import { defineComponent, h, PropType } from "vue"
 import { getEnv } from "complex-utils"
 import { DictionaryData, DictionaryValue, FormValue } from "complex-data"
 import ObserveList from "complex-data/src/dictionary/ObserveList"
-import { AttrsValueInitOption } from "complex-data/src/lib/AttrsValue"
-import InfoView, { InfoViewDefaultProps } from "./InfoView"
-import { AutoItemPayloadType } from "./dictionary/AutoItem"
+import type { AttrsValueInitOption } from "complex-data/src/lib/AttrsValue"
+import InfoView from "./InfoView"
+import type { InfoViewDefaultProps } from "./InfoView"
+import type { AutoItemPayloadType } from "./dictionary/AutoItem"
 import antdConfig from "../antdConfig"
 
 export interface InfoAreaDefaultProps extends InfoViewDefaultProps {

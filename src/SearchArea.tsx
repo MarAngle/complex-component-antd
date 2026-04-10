@@ -1,8 +1,9 @@
 import { defineComponent, h, PropType, VNode } from "vue"
 import { DefaultInfo, SearchData } from "complex-data"
-import { DictionaryEditMod } from "complex-data/src/lib/DictionaryValue"
-import EditView, { EditViewDefaultProps } from "./EditView"
-import { AutoItemPayloadType } from "./dictionary/AutoItem"
+import type { DictionaryEditMod } from "complex-data/src/lib/DictionaryValue"
+import EditView from "./EditView"
+import type { EditViewDefaultProps } from "./EditView"
+import type { AutoItemPayloadType } from "./dictionary/AutoItem"
 import antdConfig from "../antdConfig"
 
 export interface SearchAreaProps extends EditViewDefaultProps {

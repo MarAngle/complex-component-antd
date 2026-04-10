@@ -1,11 +1,13 @@
 import { defineComponent, h, PropType, markRaw } from "vue"
-import { Col, Form, Row, FormProps } from "ant-design-vue"
+import { Col, Form, Row } from "ant-design-vue"
+import type { FormProps } from "ant-design-vue"
 import { mergeData } from "complex-utils"
 import { FormValue } from "complex-data"
 import ObserveList from "complex-data/src/dictionary/ObserveList"
 import DefaultInfo from "complex-data/src/dictionary/DefaultInfo"
-import AutoItem, { AutoItemPayloadType, AutoItemProps, AutoItemParser } from "./dictionary/AutoItem"
-import { InfoViewDefaultProps } from "./InfoView"
+import AutoItem from "./dictionary/AutoItem"
+import type { AutoItemPayloadType, AutoItemProps, AutoItemParser } from "./dictionary/AutoItem"
+import type { InfoViewDefaultProps } from "./InfoView"
 import antdConfig from "../antdConfig"
 
 export interface EditViewDefaultProps extends InfoViewDefaultProps {

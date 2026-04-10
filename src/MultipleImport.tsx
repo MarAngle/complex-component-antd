@@ -1,12 +1,13 @@
 import { defineComponent, h, PropType, ref, watch, VNode, computed } from "vue"
 import { useInjectFormItemContext } from "ant-design-vue/es/form"
 import { notice } from "complex-plugin"
-import { fileDataType } from "complex-data/type"
-import { FileEditOption } from "complex-data/src/dictionary/FileEdit"
-import { FileMultipleValue, FileValue, fileValueType } from "complex-data/src/lib/FileValue"
+import type { fileDataType } from "complex-data/type"
+import type { FileEditOption } from "complex-data/src/dictionary/FileEdit"
+import { FileValue } from "complex-data/src/lib/FileValue"
+import { FileMultipleValue, type fileValueType } from "complex-data/src/lib/FileValue"
 import { FileView } from "complex-component"
-import { FileProps, MultipleFileProps } from "complex-component/type"
-import { DefaultImportProps } from "./SingleImport"
+import type { FileProps, MultipleFileProps } from "complex-component/type"
+import type { DefaultImportProps } from "./SingleImport"
 import antdConfig from "../antdConfig"
 
 export interface MultipleImportProps extends FileProps, MultipleFileProps, DefaultImportProps{

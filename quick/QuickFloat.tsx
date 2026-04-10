@@ -1,5 +1,6 @@
 import { defineComponent, h, PropType } from "vue"
-import FloatData, { FloatValue } from "./data/FloatData"
+import FloatData from "./data/FloatData"
+import type { FloatValue } from "./data/FloatData"
 import QuickFloatValue from "./QuickFloatValue"
 
 export default defineComponent({

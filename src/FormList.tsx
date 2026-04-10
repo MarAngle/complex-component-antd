@@ -1,12 +1,13 @@
 import { defineComponent, h, PropType } from "vue"
-import { Form, FormItemRest, Table, TableColumnType, TableProps } from "ant-design-vue"
+import { Form, FormItemRest, Table } from "ant-design-vue"
+import type { TableColumnType, TableProps } from "ant-design-vue"
 import { FormValue } from "complex-data"
 import ListEdit from "complex-data/src/dictionary/ListEdit"
 import MenuView from "./MenuView"
-import { customRenderPayload, tablePayload } from "./TableView"
+import type { customRenderPayload, tablePayload } from "./TableView"
 import antdConfig from "../antdConfig"
 import AutoEditItem from "./dictionary/AutoEditItem"
-import { AutoItemPayloadType } from "./dictionary/AutoItem"
+import type { AutoItemPayloadType } from "./dictionary/AutoItem"
 import AutoInfoItem from "./dictionary/AutoInfoItem"
 
 export default defineComponent({

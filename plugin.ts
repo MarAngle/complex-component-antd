@@ -1,10 +1,13 @@
 import { App, reactive } from "vue"
-import { FormInstance } from 'ant-design-vue'
-import dayjs, { Dayjs } from 'dayjs'
+import type { FormInstance } from 'ant-design-vue'
+import dayjs from 'dayjs'
+import type { Dayjs } from 'dayjs'
 import customParseFormat from "dayjs/plugin/customParseFormat"
-import { date, PluginLayout } from 'complex-plugin'
+import { date } from 'complex-plugin'
+import type { PluginLayout } from 'complex-plugin'
 import { Data, FormValue } from "complex-data"
-import DefaultEdit, { ruleOption } from 'complex-data/src/dictionary/DefaultEdit'
+import DefaultEdit from 'complex-data/src/dictionary/DefaultEdit'
+import type { ruleOption } from 'complex-data/src/dictionary/DefaultEdit'
 import SimpleDateEdit from "complex-data/src/dictionary/SimpleDateEdit"
 import LayoutResizeObserver from "./LayoutResizeObserver"
 import './src/style/index.css'

@@ -1,8 +1,10 @@
 import { defineComponent, h, PropType, VNode } from "vue"
-import { AutoItemPayloadType } from "../src/dictionary/AutoItem"
-import { tablePayload } from "../src/TableView"
-import ModalView, { ModalViewProps } from "../src/ModalView"
-import QuickList, { QuickListProps } from "./QuickList"
+import type { AutoItemPayloadType } from "../src/dictionary/AutoItem"
+import type { tablePayload } from "../src/TableView"
+import ModalView from "../src/ModalView"
+import type { ModalViewProps } from "../src/ModalView"
+import QuickList from "./QuickList"
+import type { QuickListProps } from "./QuickList"
 
 export interface QuickCascadeProps {
   list: QuickListProps

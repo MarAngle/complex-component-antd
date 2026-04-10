@@ -1,7 +1,7 @@
 import { VNode } from "vue"
 import { Data } from "complex-data"
-import { MenuValue } from "complex-data/type"
-import { ModalViewProps, ModalViewSlotProps } from "../../src/ModalView"
+import type { MenuValue } from "complex-data/type"
+import type { ModalViewProps, ModalViewSlotProps } from "../../src/ModalView"
 import QuickFloatValue from "../QuickFloatValue"
 
 let id = 1

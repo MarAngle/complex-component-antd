@@ -1,10 +1,13 @@
 import { defineComponent, h, PropType, markRaw } from "vue"
-import { Col, Row, RowProps } from "ant-design-vue"
+import { Col, Row } from "ant-design-vue"
+import type { RowProps } from "ant-design-vue"
 import ObserveList from "complex-data/src/dictionary/ObserveList"
 import DefaultInfo from "complex-data/src/dictionary/DefaultInfo"
-import AttrsValue, { AttrsValueInitOption } from "complex-data/src/lib/AttrsValue"
+import AttrsValue from "complex-data/src/lib/AttrsValue"
+import type { AttrsValueInitOption } from "complex-data/src/lib/AttrsValue"
 import GridParse from "complex-data/src/lib/GridParse"
-import AutoItem, { AutoItemPayloadType, AutoItemProps } from "./dictionary/AutoItem"
+import AutoItem from "./dictionary/AutoItem"
+import type { AutoItemPayloadType, AutoItemProps } from "./dictionary/AutoItem"
 import antdConfig from "../antdConfig"
 
 export interface InfoViewDefaultProps {

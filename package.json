@@ -1,6 +1,6 @@
 {
   "name": "complex-component-antd",
-  "version": "4.10.11",
+  "version": "4.10.12",
   "description": "a complex component by antd v4",
   "type": "module",
   "main": "index.ts",
@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "ant-design-vue": "^4.2.6",
-    "complex-data": "4.10.8 - 4.10.99",
-    "complex-component": "4.10.1 - 4.10.99"
+    "complex-data": "4.10.9 - 4.10.99",
+    "complex-component": "4.10.4 - 4.10.99"
   },
   "devDependencies": {
     "typescript": "^5.2.2",

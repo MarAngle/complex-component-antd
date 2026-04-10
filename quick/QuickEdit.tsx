@@ -1,7 +1,10 @@
 import { h, defineComponent, PropType, VNode } from 'vue'
-import ModalView, { ModalViewProps } from './../src/ModalView'
-import EditArea, { EditAreaProps } from './../src/EditArea'
-import InfoArea, { InfoAreaProps } from './../src/InfoArea'
+import ModalView from './../src/ModalView'
+import type { ModalViewProps } from './../src/ModalView'
+import EditArea from './../src/EditArea'
+import type { EditAreaProps } from './../src/EditArea'
+import InfoArea from './../src/InfoArea'
+import type { InfoAreaProps } from './../src/InfoArea'
 
 export type QuickEditTarget = 'edit' | 'info'
 

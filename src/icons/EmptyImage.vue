@@ -8,7 +8,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue"
 import { dataConfig } from "complex-data"
-import { localIconProps } from "../../type"
+import type { localIconProps } from "../../type"
 
 export default defineComponent({
   name: 'EmptyImage',

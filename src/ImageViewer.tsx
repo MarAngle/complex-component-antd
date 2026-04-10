@@ -1,8 +1,9 @@
 import { defineComponent, h, PropType, VNode } from "vue"
 import { dataConfig } from "complex-data"
-import ModalView, { ModalViewProps } from "./ModalView"
+import ModalView from "./ModalView"
+import type { ModalViewProps } from "./ModalView"
 import icon from "../icon"
-import { localIconProps } from "../type"
+import type { localIconProps } from "../type"
 
 type renderType = (payload: localIconProps) => VNode | VNode[]
 

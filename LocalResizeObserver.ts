@@ -1,4 +1,5 @@
-import LayoutResizeObserver, { LayoutResizeObserverSupplement } from "./LayoutResizeObserver"
+import LayoutResizeObserver from "./LayoutResizeObserver"
+import type { LayoutResizeObserverSupplement } from "./LayoutResizeObserver"
 
 export type LocalResizeObserverType = (entry: ResizeObserverEntry) => void
 

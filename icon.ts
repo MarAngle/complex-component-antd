@@ -1,9 +1,9 @@
 import { Component, VNode, h, reactive } from 'vue'
 import { SearchOutlined, SettingOutlined, PlusOutlined, DeleteOutlined, ContainerOutlined, EditOutlined, ReloadOutlined, SyncOutlined, CloseOutlined, StopOutlined, DownloadOutlined, UploadOutlined, LinkOutlined, DownOutlined, UpOutlined } from '@ant-design/icons-vue'
-import { MenuValue } from 'complex-data/type'
+import type { MenuValue } from 'complex-data/type'
 import EmptyImage from "./src/icons/EmptyImage.vue"
 import ErrorImage from "./src/icons/ErrorImage.vue"
-import { localIconProps } from './type'
+import type { localIconProps } from './type'
 
 export const iconDict: Record<string, (props?: Record<PropertyKey, any>) => VNode> = reactive({
   search: (props) => h(SearchOutlined, props),

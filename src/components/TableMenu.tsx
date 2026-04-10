@@ -1,8 +1,8 @@
 import { defineComponent, h, PropType } from "vue"
 import { camelToLine, debounce } from "complex-utils"
-import { MenuValue } from "complex-data/type"
+import type { MenuValue } from "complex-data/type"
 import DefaultMod from "complex-data/src/dictionary/DefaultMod"
-import { tablePayload } from "../TableView"
+import type { tablePayload } from "../TableView"
 import antdConfig from "../../antdConfig"
 
 export interface TableMenuValue extends MenuValue<never, [tablePayload<DefaultMod>]> {

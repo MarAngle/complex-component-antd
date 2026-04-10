@@ -1,11 +1,12 @@
 import { reactive } from 'vue'
-import dayjs, { Dayjs } from 'dayjs'
+import dayjs from 'dayjs'
+import type { Dayjs } from 'dayjs'
 import { isArray } from 'complex-utils'
 import { notice } from 'complex-plugin'
 import { AttrsValue } from "complex-data"
-import { AttrsValueInitOption } from 'complex-data/src/lib/AttrsValue'
+import type { AttrsValueInitOption } from 'complex-data/src/lib/AttrsValue'
 import { StatusValue } from 'complex-data/src/module/StatusData'
-import { DictionaryEditMod } from "complex-data/src/lib/DictionaryValue"
+import type { DictionaryEditMod } from "complex-data/src/lib/DictionaryValue"
 import InputEdit from "complex-data/src/dictionary/InputEdit"
 import InputNumberEdit from "complex-data/src/dictionary/InputNumberEdit"
 import TextAreaEdit from "complex-data/src/dictionary/TextAreaEdit"
@@ -18,7 +19,7 @@ import CustomEdit from "complex-data/src/dictionary/CustomEdit"
 import FormEdit from 'complex-data/src/dictionary/FormEdit'
 import SimpleDateEdit from 'complex-data/src/dictionary/SimpleDateEdit'
 import ListEdit from 'complex-data/src/dictionary/ListEdit'
-import { AutoItemPayloadType } from './src/dictionary/AutoItem'
+import type { AutoItemPayloadType } from './src/dictionary/AutoItem'
 
 const init = function (itemAttrs: AttrsValue, targetProp: PropertyKey, formData: Record<PropertyKey, unknown>, prop: PropertyKey) {
   itemAttrs.props[targetProp] = formData[prop]
